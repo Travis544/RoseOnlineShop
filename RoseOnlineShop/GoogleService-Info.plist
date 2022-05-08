@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>555157064156-349t96ncm61aaj483hi575b5rcf4oj9f.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.555157064156-349t96ncm61aaj483hi575b5rcf4oj9f</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCFsKa3wpJ6s_g00UDhLo0Km21ccM7ZSws</string>
+	<key>GCM_SENDER_ID</key>
+	<string>555157064156</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>demonStrate.TravisZYutongC.RoseOnlineShop</string>
+	<key>PROJECT_ID</key>
+	<string>roseonlineshop-3175f</string>
+	<key>STORAGE_BUCKET</key>
+	<string>roseonlineshop-3175f.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:555157064156:ios:d7af4317f1d86158806719</string>
+</dict>
+</plist>
