@@ -68,15 +68,20 @@ class CategoryPageViewController: UIViewController {
     }
     
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier==kListingSegue{
+            let lvc=segue.destination as! ListingTableViewController
+            let b = sender as! UIButton
+            lvc.category=(Array(categories.keys)[b.tag])
+        }
+        
     }
-    */
     
+
 
 }

@@ -36,6 +36,26 @@ class ListenerStrategy{
           }
     }
     
+    func listenForCollection(query : Query, changeListener: @escaping ((_ docs : [DocumentSnapshot]) -> Void)){
+        _listener = query.addSnapshotListener { querySnapshot, error in
+            print("UPDATE CALLED")
+            guard let documents : [DocumentSnapshot] = querySnapshot?.documents else{
+                print("error fetching document")
+                return
+            }
+            
+            var docs=[DocumentSnapshot]()
+            for document in documents{
+                docs.append(document)
+            }
+            
+//            print("UPDATE CALLED")
+            changeListener(docs)
+          }
+    }
+    
+    
+    
     func stopListening() {
         _listener?.remove()
     }
