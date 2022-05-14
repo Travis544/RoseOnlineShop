@@ -15,17 +15,25 @@ class Item{
     var owner : String
     var isAvailable : Bool
     var description : String
+    var isTradable : Bool
+    var isBuyable : Bool
+    
 //    public init(){
 //
 //    }
     
     init (doc : DocumentSnapshot ){
+        let data=doc.data()
         self.id=doc.documentID
-        self.name=doc[kItemName] as! String
-        self.imageUrl=doc[kItemImage] as! String
-        self.category=doc[kItemCategory] as! String
-        self.owner=doc[kItemOwner] as! String
-        self.isAvailable=doc[kItemAvailable] as! Bool
-        self.description=doc[kItemDescription] as! String
+        self.name=data?[kItemName] as! String ?? ""
+        self.imageUrl=data?[kItemImage] as! String ?? ""
+        self.category=data?[kItemCategory] as! String ?? ""
+        self.owner=data?[kItemOwner] as! String ?? ""
+        self.isAvailable=data?[kItemAvailable] as! Bool ?? false
+        self.description=data?[kItemDescription] as! String  ?? ""
+        print("SICK MAN")
+        print(doc.description)
+        self.isTradable=data?[kItemTradable] as! Bool ?? true
+        self.isBuyable=data?[kItemIsBuyable] as! Bool ?? true
     }
 }

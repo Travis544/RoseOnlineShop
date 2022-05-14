@@ -11,7 +11,8 @@ import UIKit
 class ListingTableViewCell : UITableViewCell{
     @IBOutlet weak var listingNameLabel: UILabel!
     @IBOutlet weak var soldByLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var tradeLabel: UILabel!
     @IBOutlet weak var itemImageView: UIImageView!
 }
 
@@ -19,14 +20,19 @@ class ListingTableViewController: UITableViewController {
     var category : String!
     var imageUtil : ImageUtils!
     var itemManager : ItemCollectionManager!
+    var userManager : UsersCollectionManager!
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageUtil=ImageUtils()
         itemManager=ItemCollectionManager()
         print(category)
         itemManager.startListening(byCategory:category!, byAuthor:nil ) {
-            
             self.tableView.reloadData()
-            
+        }
+        
+        
+        userManager=UsersCollectionManager()
+        userManager.startListening {
         }
         
         
@@ -55,12 +61,28 @@ class ListingTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: kListingCell, for: indexPath)
         as! ListingTableViewCell
         let item = itemManager.latestItems[indexPath.row]
+        if item.isTradable{
+            cell.tradeLabel.isHidden=false
+            cell.tradeLabel.text="Looking to trade"
+        }else{
+            cell.tradeLabel.isHidden=true
+        }
+        
+        if item.isBuyable{
+            cell.priceLabel.isHidden=false
+            cell.priceLabel.text = "Looking for buyers"
+        }else{
+            cell.priceLabel.isHidden=true
+        }
+        
+        
         cell.listingNameLabel.text = item.name
 //        need to get user name here....
-//        cell.soldByLabel
-        
-        cell.descriptionLabel.text=item.description
+        var name = userManager.getFullName(uid: item.owner)
+        cell.soldByLabel.text = "Sold by:\(name)"
         imageUtil.load(imageView: cell.itemImageView, from: item.imageUrl)
+                  
+        
         // Configure the cell...
         return cell
     }
@@ -100,14 +122,25 @@ class ListingTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier==kItemDetailSegue{
+            let idvc=segue.destination as! ItemDetailViewController
+            
+            if let indexPath=tableView.indexPathForSelectedRow{
+                let id=itemManager.latestItems[indexPath.row].id
+                idvc.itemId=id
+            }
+        }
+    
+        
     }
-    */
+    
 
 }

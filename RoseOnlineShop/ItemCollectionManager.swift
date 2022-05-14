@@ -27,17 +27,23 @@ class ItemCollectionManager{
     public func startListening(byCategory: String?, byAuthor : String?, changeListener: @escaping (() -> Void)){
         var query = _collectionRef.limit(to: 50)
         query.order(by: kItemLastTouched)
+        
+        query = query.whereField(kItemAvailable, isEqualTo: true)
         if let byCategory=byCategory{
             query = query.whereField(kItemCategory, isEqualTo:byCategory)
         }
+        
+        
         
         if let authorFilter = byAuthor{
             query=query.whereField(kItemOwner, isEqualTo:authorFilter)
 //        }
         }
+        
         listener.listenForCollection(query: query) { docs in
             self.latestItems.removeAll()
             for doc in docs{
+                print(doc.data())
                 self.latestItems.append(Item(doc: doc))
             }
             print("UPATE!!!!")

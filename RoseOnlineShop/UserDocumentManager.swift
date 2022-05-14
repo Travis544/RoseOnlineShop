@@ -20,6 +20,13 @@ class UserDocumentManager {
     static let shared = UserDocumentManager()
     var _collectionRef: CollectionReference
     var listener : ListenerStrategy
+    var displayName : String{
+        return _latestDocument?.data()?[kDisplayName] as! String ?? ""
+    }
+    
+    var imageUrl : String{
+        return _latestDocument?.data()?[kImageUrl] as! String ?? ""
+    }
 //    var userEmail : String{
 //        return _latestDocument?.documentID ?? ""
 //    }
