@@ -25,10 +25,7 @@ class RequestCollectionMaanger{
     
     
     public func startListening(uid:String,changeListener: @escaping (() -> Void)){
-        var query = _collectionRef.limit(to: 50)
-        query.order(by: "created")
-        
-        query = query.whereField(kFromUser, isEqualTo: uid)
+        var query = _collectionRef.order(by: "created").whereField(kFromUser, isEqualTo: uid)
 
         listener.listenForCollection(query: query) { docs in
             self.latestRequests.removeAll()
@@ -54,7 +51,8 @@ class RequestCollectionMaanger{
         kItemProposed: request.itemProposed,
         kItemRequested: request.itemRequested,
         kStatus: request.status,
-        kRequestLocation: request.requestLocation
+        kRequestLocation: request.requestLocation,
+        "created": Timestamp.init()
        ] as [String : Any]
         
         self.cudStrategy.add(collectionRef: self._collectionRef, data: data) { docRef in

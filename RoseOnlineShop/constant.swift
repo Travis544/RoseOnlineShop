@@ -12,10 +12,12 @@ let kRoseFireRegistraryToken="73c52669-a480-477d-97c1-bf544b5896ff"
 let kUsersCollectionPath="Users"
 let kDisplayName="displayName"
 let kImageUrl="imageUrl"
+let kUserEmail="email"
 //segue
 let kListingSegue="listingSegue"
 let kShowCategorySegue="categoriesSegue"
 let kItemDetailSegue="itemDetailSegue"
+let kMyItemsSegue="myItemsSegue"
 //table view cell
 let kListingCell="listingCell"
 

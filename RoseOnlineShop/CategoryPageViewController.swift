@@ -38,7 +38,7 @@ class CategoryPageViewController: UIViewController {
 //       label.text="THIS IS A TEST"
 //       myView.addSubview(label)
 //       myView.translatesAutoresizingMaskIntoConstraints = false
-        createCategories()
+        
 
     }
     
@@ -64,10 +64,19 @@ class CategoryPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        createCategories()
         // Do any additional setup after loading the view.
     }
     
-
+    override func viewDidDisappear(_ animated: Bool) {
+      
+    }
+    
+//
+//    @IBAction func test(_ sender: Any) {
+//
+//        self.performSegue(withIdentifier: kListingSegue, sender: self)
+//    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

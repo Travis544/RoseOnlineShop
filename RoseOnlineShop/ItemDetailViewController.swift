@@ -15,7 +15,8 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var buyerLabel: UILabel!
     @IBOutlet weak var itemDescription: UITextView!
     
-  
+    @IBOutlet weak var proposeOfferButton: UIButton!
+    
     @IBOutlet weak var soldByLabel: UILabel!
     @IBOutlet weak var userProfileImage: UIImageView!
     @IBOutlet weak var userBox: UIStackView!
@@ -33,15 +34,17 @@ class ItemDetailViewController: UIViewController {
                 UserDocumentManager.shared.startListening(for: item.owner) {
                         self.updateView()
                 }
+                
+                
+                if item.owner==AuthManager.shared.currentUser!.uid{
+                    self.proposeOfferButton.isHidden=true
+                }
             }
             
             
         }
         
-       
-        
-        
-        
+     
         // Do any additional setup after loading the view.
     }
     

@@ -55,7 +55,7 @@ class OrderRequestViewController: UIViewController {
         let location = locationTextField.text!
         let itemRequested=self.itemId ?? ""
     
-        let request = Request(location: location, money:price, fromUser:"", itemProposed: self.itemAdded, itemRequested:itemRequested, message: message, status: "pending"  )
+        let request = Request(location: location, money:price, fromUser:AuthManager.shared.currentUser!.uid, itemProposed: self.itemAdded, itemRequested:itemRequested, message: message, status: "pending"  )
         
         requestManager.addRequest(request: request)
         
@@ -73,7 +73,7 @@ class OrderRequestViewController: UIViewController {
         //        configure
         let cancelAction = UIAlertAction(title:"Cancel", style: UIAlertAction.Style.cancel, handler:nil)
 //        add to alert controller the cancel action
-        let createNewAction=UIAlertAction(title:"Create group",
+        let createNewAction=UIAlertAction(title:"Create new item",
                                             style: UIAlertAction.Style.default){
             action in
             

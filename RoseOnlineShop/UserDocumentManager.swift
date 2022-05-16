@@ -39,7 +39,7 @@ class UserDocumentManager {
     }
     
     
-    func addNewUserMaybe(uid : String, displayName: String?,
+    func addNewUserMaybe(uid : String, displayName: String?, email : String?,
                          finishedListener: @escaping (() -> Void)){
 //        get the user document for this uid
 //        if it exist do nothing
@@ -52,7 +52,9 @@ class UserDocumentManager {
                 finishedListener()
             }else{
                 print("Document does not exist. Create this user")
-                docRef.setData([kDisplayName : displayName ?? ""])
+                docRef.setData([kDisplayName : displayName ?? "",
+                                   kUserEmail:email
+                               ])
                 finishedListener()
             }
         }

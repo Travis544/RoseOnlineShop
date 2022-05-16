@@ -9,9 +9,10 @@ import UIKit
 import Firebase
 class LoginViewController: UIViewController {
     var rosefireName : String?
+    var roseEmail : String?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -36,8 +37,10 @@ class LoginViewController: UIViewController {
                 print("error signing in with RoseFire \(error)")
             }
             self.rosefireName=result?.name
-            AuthManager.shared.signInWithRosefireToken(result!.token)
+            self.roseEmail=result?.email
             
+            AuthManager.shared.signInWithRosefireToken(result!.token)
+           
         }
 
     }
@@ -53,7 +56,7 @@ class LoginViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        UserDocumentManager.shared.addNewUserMaybe(uid: AuthManager.shared.currentUser!.uid, displayName: self.rosefireName ?? AuthManager.shared.currentUser!.displayName ){
+        UserDocumentManager.shared.addNewUserMaybe(uid: AuthManager.shared.currentUser!.uid, displayName: self.rosefireName ?? AuthManager.shared.currentUser!.displayName, email: self.roseEmail ?? AuthManager.shared.currentUser!.email ){
         }
         
     }
