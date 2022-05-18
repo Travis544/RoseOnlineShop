@@ -20,6 +20,7 @@ let kItemDetailSegue="itemDetailSegue"
 let kMyItemsSegue="myItemsSegue"
 //table view cell
 let kListingCell="listingCell"
+let kMyItemListingCell="myItemListingCell"
 
 //Item
 let kItemCollectionPath="Items"

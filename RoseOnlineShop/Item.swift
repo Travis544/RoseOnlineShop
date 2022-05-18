@@ -30,10 +30,8 @@ class Item{
         self.category=data?[kItemCategory] as! String ?? ""
         self.owner=data?[kItemOwner] as! String ?? ""
         self.isAvailable=data?[kItemAvailable] as! Bool ?? false
-        self.description=data?[kItemDescription] as! String  ?? ""
-        print("SICK MAN")
-        print(doc.description)
-        self.isTradable=data?[kItemTradable] as! Bool ?? true
-        self.isBuyable=data?[kItemIsBuyable] as! Bool ?? true
+        self.description=data?[kItemDescription] as? String  ?? ""
+        self.isTradable=data?[kItemTradable] as? Bool ?? true
+        self.isBuyable=data?[kItemIsBuyable] as? Bool ?? true
     }
 }

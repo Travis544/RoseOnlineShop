@@ -7,39 +7,79 @@
 
 import UIKit
 
-class MyItemsTableViewController: UITableViewController {
+class MyListingTableViewCell : UITableViewCell{
+    @IBOutlet weak var listingNameLabel: UILabel!
+    @IBOutlet weak var soldByLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var tradeLabel: UILabel!
+    @IBOutlet weak var itemImageView: UIImageView!
+}
 
+class MyItemsTableViewController: UITableViewController {
+    var category : String!
+    var imageUtil : ImageUtils!
+    var itemManager : ItemCollectionManager!
+    var userManager : UsersCollectionManager!
+    var requestManager : RequestCollectionMaanger!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        imageUtil=ImageUtils()
+        itemManager=ItemCollectionManager()
+        userManager=UsersCollectionManager()
+        userManager.startListening {
+        }
+        requestManager=RequestCollectionMaanger()
+        
+        requestManager.startListening(uid: AuthManager.shared.currentUser!.uid) {
+            self.itemManager.startListening(byCategory:nil, byAuthor:AuthManager.shared.currentUser!.uid) {
+                self.tableView.reloadData()
+            }
+        }
     }
 
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return itemManager.latestItems.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: kMyItemListingCell, for: indexPath) as! MyListingTableViewCell
         // Configure the cell...
+        let item = itemManager.latestItems[indexPath.row]
+        print("did run")
+        if item.isTradable{
+            cell.tradeLabel.isHidden=false
+            cell.tradeLabel.text="Looking to trade"
+        }else{
+            cell.tradeLabel.isHidden=true
+        }
+        
+        if item.isBuyable{
+            cell.priceLabel.isHidden=false
+            cell.priceLabel.text = "Looking for buyers"
+        }else{
+            cell.priceLabel.isHidden=true
+        }
+        
+        cell.listingNameLabel.text = item.name
+        var solder = userManager.getFullName(uid: item.owner)
+        cell.soldByLabel.text = "Sold by:\(solder)"
+        imageUtil.load(imageView: cell.itemImageView, from: item.imageUrl)
+        
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.

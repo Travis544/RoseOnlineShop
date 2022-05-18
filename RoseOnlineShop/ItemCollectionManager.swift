@@ -53,6 +53,17 @@ class ItemCollectionManager{
         }
     }
     
+    
+//    func startListening(filterByAuthor authorFilter: String?, changeListener: @escaping (() -> Void)) -> ListenerRegistration {
+//        var query = _collectionRef.limit(to: 50)
+//        query.order(by: kItemLastTouched)
+//        
+//    }
+    
+    
+    
+    
+    
     public func addItem(item : Item) {
 //        print(album.albumMembers)
 ////
