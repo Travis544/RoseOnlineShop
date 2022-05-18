@@ -14,15 +14,21 @@ class ItemCollectionManager{
 //    var cudStrategy : CUDStrategy
     var recentlyAddedItem : String?
     
+    var idToItem : [String : Item]
     
     public init() {
         _collectionRef = Firestore.firestore().collection(kItemCollectionPath)
         listener=ListenerStrategy()
         latestItems = [Item]()
+        idToItem = [String : Item]()
 //        cudStrategy=CUDStrategy()
         recentlyAddedItem = nil
     }
     
+    
+    public func getItemById(id : String) -> Item?{
+        return idToItem[id]
+    }
     
     public func startListening(byCategory: String?, byAuthor : String?, changeListener: @escaping (() -> Void)){
         var query = _collectionRef.limit(to: 50)
@@ -34,6 +40,7 @@ class ItemCollectionManager{
         }
         
         
+    
         
         if let authorFilter = byAuthor{
             query=query.whereField(kItemOwner, isEqualTo:authorFilter)
@@ -45,6 +52,7 @@ class ItemCollectionManager{
             for doc in docs{
                 print(doc.data())
                 self.latestItems.append(Item(doc: doc))
+                self.idToItem[doc.documentID]=Item(doc: doc)
             }
             print("UPATE!!!!")
             print(self.latestItems)

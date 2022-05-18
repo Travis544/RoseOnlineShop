@@ -89,7 +89,7 @@ class ListingTableViewController: UITableViewController {
              print(req.itemRequested)
              if req.itemRequested==item.id{
                 print("REQUEST EXISTS")
-                 cell.isUserInteractionEnabled=false
+//                 cell.isUserInteractionEnabled=false
                  cell.isOpaque=true
 //                 maybe make it tinted
              }

@@ -25,12 +25,14 @@
 
 
 import UIKit
+import FirebaseAuth
 
 class CategoryPageViewController: UIViewController {
     @IBOutlet weak var stackView: UIStackView!
-    
+    var logOutHandle : AuthStateDidChangeListenerHandle!
     var categories:[String:UIColor]=["Electronics":UIColor.yellow, "Clothing":UIColor.purple, "Books":UIColor.blue]
     override func updateViewConstraints(){
+        
        super.updateViewConstraints()
 //       let myView=UIView()
 //       myView.backgroundColor=UIColor.yellow
@@ -38,9 +40,28 @@ class CategoryPageViewController: UIViewController {
 //       label.text="THIS IS A TEST"
 //       myView.addSubview(label)
 //       myView.translatesAutoresizingMaskIntoConstraints = false
-        
+        self.navigationItem.leftBarButtonItem=nil
 
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        logOutHandle = AuthManager.shared.addLogoutObserver {
+            print("Someone signed out, Go back to the loginViewController")
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        AuthManager.shared.removeObserver(logOutHandle)
+    }
+    
+    @IBAction func pressedSignOut(_ sender: Any) {
+        AuthManager.shared.signOut()
+    }
+    
     
     func createCategories(){
         var counter = 0
@@ -68,10 +89,7 @@ class CategoryPageViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-      
-    }
-    
+   
 //
 //    @IBAction func test(_ sender: Any) {
 //

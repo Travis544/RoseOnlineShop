@@ -56,7 +56,10 @@ class LoginViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        UserDocumentManager.shared.addNewUserMaybe(uid: AuthManager.shared.currentUser!.uid, displayName: self.rosefireName ?? AuthManager.shared.currentUser!.displayName, email: self.roseEmail ?? AuthManager.shared.currentUser!.email ){
+        UserDocumentManager.shared.addNewUserMaybe(uid: AuthManager.shared.currentUser!.uid, displayName: self.rosefireName ?? AuthManager.shared.currentUser!.displayName, email: self.roseEmail ?? AuthManager.shared.currentUser!.email,
+            url: kDefaultProfile
+                                                   
+        ){
         }
         
     }

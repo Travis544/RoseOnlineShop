@@ -6,21 +6,55 @@
 //
 
 import UIKit
+class RequestTableViewCell : UITableViewCell{
+    
+    @IBOutlet weak var itemImageView: UIImageView!
+    @IBOutlet weak var stausLabel: UILabel!
+    @IBOutlet weak var tradeOfferLabel: UILabel!
+    @IBOutlet weak var itemLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+}
 
 
 class RequestTableViewController: UITableViewController {
+    
+    @IBOutlet weak var stackView: UIStackView!
     var requestManager : RequestCollectionMaanger!
+    var itemManager : ItemCollectionManager!
+    var userManager : UserDocumentManager!
+    var imageUtils = ImageUtils()
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
+//
+       super.viewDidLoad()
+        tableView.rowHeight = UITableView.automaticDimension
+//        tableView.estimatedRowHeight = 300
+////        self.tableView.rowHeight=UITableView.automaticDimension
+//
+//
+//
+//                // Uncomment the following line to preserve selection between presentations
+//        // self.clearsSelectionOnViewWillAppear = false
+//
+//        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+//        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         requestManager = RequestCollectionMaanger()
+        itemManager=ItemCollectionManager()
         requestManager.startListening(uid: AuthManager.shared.currentUser!.uid) {
-            self.tableView.reloadData()
-        }
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+            self.itemManager.startListening(byCategory: nil, byAuthor: nil) {
+                 self.tableView.reloadData()
+                 print("Listening to items")
+             }
+            
+            
+        }
     }
 
     // MARK: - Table view data source
@@ -35,15 +69,43 @@ class RequestTableViewController: UITableViewController {
         return requestManager.latestRequests.count
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: kRequestTableViewCell, for: indexPath) as! RequestTableViewCell
 
         // Configure the cell...
+       
+        let request=requestManager.latestRequests[indexPath.row]
+        cell.stausLabel.text=request.status
+        if let item = itemManager.idToItem[request.itemRequested]{
+            cell.itemLabel.text = item.name
+            print("LOADING \(item.imageUrl)")
+            imageUtils.load(imageView: cell.itemImageView, from: item.imageUrl)
+        }else{
+            cell.itemLabel.text = "Item no longer exist"
+        }
 
+        switch request.status {
+        case "pending":
+            cell.stausLabel.textColor = UIColor.systemOrange
+        case "rejected":
+            cell.stausLabel.textColor = UIColor.systemRed
+        case "accepted":
+            cell.stausLabel.textColor = UIColor.systemGreen
+        default:
+            cell.stausLabel.textColor = UIColor.black
+        }
+
+
+        cell.priceLabel.text="Amount offered $\(request.moneyOffered)"
+        
+        
+//        Hidden for now.
+        cell.tradeOfferLabel.isHidden=true
+        
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
