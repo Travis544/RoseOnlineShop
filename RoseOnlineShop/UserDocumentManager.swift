@@ -24,6 +24,10 @@ class UserDocumentManager {
         return _latestDocument?.data()?[kDisplayName] as! String ?? ""
     }
     
+    var displayEmail : String{
+        return _latestDocument?.data()?[kUserEmail] as! String ?? ""
+    }
+    
     var imageUrl : String{
         return _latestDocument?.data()?[kImageUrl] as! String ?? ""
     }
@@ -60,7 +64,7 @@ class UserDocumentManager {
         }
     }
     
-    func startListening(for documentId: String, changeListener: @escaping (() -> Void)) {
+    func startListening(for documentId: String, changeListener: @escaping (() -> Void))  {
         let query = _collectionRef.document(documentId)
         self._latestDocument=nil
         self.listener.listenForOneDoc(query: query) { doc in
@@ -74,6 +78,19 @@ class UserDocumentManager {
     func stopListening() {
         listener.stopListening()
     }
+    
+    func updateName(name: String) {
+        _collectionRef.document(_latestDocument!.documentID).updateData([
+            kDisplayName: name
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
+    }
+    
     
 }
     

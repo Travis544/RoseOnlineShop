@@ -6,14 +6,48 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfilePageViewController: UIViewController {
-
+    
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    
+    var userListenerRegistration: ListenerRegistration?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UserDocumentManager.shared.startListening(for: AuthManager.shared.currentUser!.uid){
+            self.updateView()
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+    
+    
+    @IBAction func nameChanged(_ sender: Any) {
+        UserDocumentManager.shared.updateName(name: nameTextField.text!)
+    }
+    
+
+    func updateView(){
+        print("show the name")
+        nameTextField.text = UserDocumentManager.shared.displayName
+        print(UserDocumentManager.shared.displayName)
+        emailTextField.text = UserDocumentManager.shared.displayEmail
+        print(UserDocumentManager.shared.displayName)
+    }
+    
+    
+    
     
 
     /*

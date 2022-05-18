@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Trj-l8-BLY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Trj-l8-BLY">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -93,7 +93,7 @@
             </objects>
             <point key="canvasLocation" x="1633" y="129"/>
         </scene>
-        <!--Profile Page View Controller-->
+        <!--Profile Page-->
         <scene sceneID="Dld-El-FrD">
             <objects>
                 <viewController id="zMX-vc-IHz" customClass="ProfilePageViewController" customModule="RoseOnlineShop" customModuleProvider="target" sceneMemberID="viewController">
@@ -101,33 +101,79 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Profile Page!!!!!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xEq-EB-J6U">
-                                <rect key="frame" x="147" y="268" width="121" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="Ytf-J2-GW6">
+                                <rect key="frame" x="30" y="128" width="354" height="178"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UBa-40-dH7">
+                                        <rect key="frame" x="0.0" y="0.0" width="354" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kg4-Ha-Tcw">
+                                        <rect key="frame" x="0.0" y="48" width="354" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="nameChanged:" destination="zMX-vc-IHz" eventType="editingDidEnd" id="gsO-hS-5o0"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DI6-b5-6zl">
+                                        <rect key="frame" x="0.0" y="96" width="354" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Nc-hs-hHv">
+                                        <rect key="frame" x="0.0" y="144" width="354" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="3Lt-Mi-CKl">
+                                <rect key="frame" x="40" y="386" width="334" height="31"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ggp-Wl-TEB">
+                                        <rect key="frame" x="0.0" y="0.0" width="147" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" image="cart.fill" catalog="system" title=" My Cart"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMB-sP-vBZ">
+                                        <rect key="frame" x="187" y="0.0" width="147" height="31"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" image="square.and.arrow.up.fill" catalog="system" title=" My Post"/>
+                                        <connections>
+                                            <segue destination="LDq-jU-v2l" kind="show" id="cgx-X1-Diy"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fbp-Tl-lnG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Ytf-J2-GW6" firstAttribute="top" secondItem="fbp-Tl-lnG" secondAttribute="top" constant="40" id="6nH-bY-teZ"/>
+                            <constraint firstItem="fbp-Tl-lnG" firstAttribute="trailing" secondItem="Ytf-J2-GW6" secondAttribute="trailing" constant="30" id="Ptl-qc-ViQ"/>
+                            <constraint firstItem="Ytf-J2-GW6" firstAttribute="leading" secondItem="fbp-Tl-lnG" secondAttribute="leading" constant="30" id="Thh-H9-BHm"/>
+                            <constraint firstItem="3Lt-Mi-CKl" firstAttribute="top" secondItem="Ytf-J2-GW6" secondAttribute="bottom" constant="80" id="hMz-d5-Aen"/>
+                            <constraint firstItem="fbp-Tl-lnG" firstAttribute="trailing" secondItem="3Lt-Mi-CKl" secondAttribute="trailing" constant="40" id="x4p-qR-ute"/>
+                            <constraint firstItem="3Lt-Mi-CKl" firstAttribute="leading" secondItem="fbp-Tl-lnG" secondAttribute="leading" constant="40" id="yT8-Kb-1cI"/>
+                        </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="ENy-05-eSo">
-                        <barButtonItem key="leftBarButtonItem" title="☰" id="Eqk-rO-IX4">
-                            <connections>
-                                <segue destination="dwM-ln-8xO" kind="presentation" id="Cv4-p6-Off"/>
-                            </connections>
-                        </barButtonItem>
+                    <navigationItem key="navigationItem" title="Profile Page" id="ENy-05-eSo" userLabel="Profile Page">
+                        <barButtonItem key="leftBarButtonItem" title="☰" id="Eqk-rO-IX4"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <segue destination="LDq-jU-v2l" kind="show" identifier="myItemsSegue" id="5oz-wc-31B"/>
+                        <outlet property="emailTextField" destination="4Nc-hs-hHv" id="6y4-21-8XE"/>
+                        <outlet property="nameTextField" destination="Kg4-Ha-Tcw" id="v7x-Z9-TFb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iWI-Me-O1f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1890" y="-1286"/>
+            <point key="canvasLocation" x="1889.8550724637682" y="-1286.3839285714284"/>
         </scene>
         <!--My Items Table View Controller-->
         <scene sceneID="k0Z-aC-61D">
@@ -161,17 +207,17 @@
         <!--Navigation Controller-->
         <scene sceneID="FY0-6r-9Qr">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uZx-ah-V7V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController id="dwM-ln-8xO" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="Kh4-Ja-S65"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="SX3-QR-ass">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
                         <segue destination="yaV-Wi-VJS" kind="relationship" relationship="rootViewController" id="00V-Gy-7xQ"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uZx-ah-V7V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2643" y="-2024"/>
         </scene>
@@ -180,11 +226,11 @@
             <objects>
                 <viewController id="yaV-Wi-VJS" customClass="SideNavViewController" customModule="RoseOnlineShop" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SCo-r5-wOf">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QR2-3e-Lmf">
-                                <rect key="frame" x="20" y="192" width="130" height="38"/>
+                                <rect key="frame" x="20" y="224" width="130" height="38"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="list.bullet.rectangle.fill" catalog="system" title="My Items">
                                     <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
@@ -706,8 +752,10 @@
     </scenes>
     <resources>
         <image name="account_box_36pt" width="36" height="36"/>
+        <image name="cart.fill" catalog="system" width="128" height="102"/>
         <image name="list.bullet.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
