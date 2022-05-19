@@ -34,7 +34,6 @@ class ItemRequestTableViewCell : RequestTableViewCell{
     }
     
     override func acceptStatus() {
-       
         hideButtons()
     }
     
@@ -78,7 +77,7 @@ class MyItemDetailWithRequestTableViewController: UITableViewController,  UIText
                     self.itemDescriptionField.text=item.description
                     self.itemDescriptionField.textColor=UIColor.systemBlue
                     print("DESCRIPTION: \(itemDescriptionField.text) c")
-                    
+                
 //                    self.itemDescriptionField.textColor=UIColor.white
                 }
                 
@@ -89,6 +88,8 @@ class MyItemDetailWithRequestTableViewController: UITableViewController,  UIText
             self.userCollectionManager.startListening {
                 
             }
+            
+            
             
             
             
@@ -107,7 +108,7 @@ class MyItemDetailWithRequestTableViewController: UITableViewController,  UIText
         if let indexPath=self.tableView.indexPath(for: cell){
             let id=self.requestManager.latestRequests[indexPath.row].id!
             self.requestManager.acceptRequest(id: id)
-            
+            self.itemManager.updateAvailability(isAvailable: false)
         }
         
     }
@@ -170,14 +171,21 @@ class MyItemDetailWithRequestTableViewController: UITableViewController,  UIText
             TradeBuyLabelController.shared.controlLabels(item: item, tradeLabel: cell.tradeOfferedLabel, buyLabel: cell.moneyOfferedLabel)
             
             cell.moneyOfferedLabel.text = "Money offered:\(request.moneyOffered)"
+            
+            if item.isAvailable==false{
+                cell.acceptButton.isHidden=true
+                cell.rejectButton.isHidden=true
+            }
+            
         }
         
-     
+       
+        
         if request.itemProposed.count==0{
             tradeLabel.isHidden=true
         }
         
-      cell.delegate = self
+        cell.delegate = self
         cell.statusLabel.text=request.status
     
         cell.determineStatusLabel(status: request.status)

@@ -49,3 +49,5 @@ let kStatus="status"
 let kFromUser="fromUser"
 let kItemRequested = "itemRequested"
 let kProposeOfferSegue="proposeOfferSegue"
+let kItemDetailFromRequestSegue="itemDetailFromRequestSegue"
+

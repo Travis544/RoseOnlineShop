@@ -27,6 +27,16 @@ class RequestCollectionMaanger{
     
     
 
+    public func getUserRequest(uid : String) -> Request?{
+        for request in latestRequests {
+            if request.fromUser==uid{
+              return request
+            }
+        }
+        
+       return nil
+    }
+    
     
     public func didUserMakeRequest(uid : String) -> Bool{
         for request in latestRequests {
@@ -40,7 +50,7 @@ class RequestCollectionMaanger{
     
     public func startListening(uid:String?, itemID:String?, changeListener: @escaping (() -> Void)){
         isListeningForItemRequest=false
-        var query = _collectionRef.order(by: "created")
+        var query = _collectionRef.order(by: kStatus).order(by: "created")
         if let uid=uid{
             query=query.whereField(kFromUser, isEqualTo: uid)
         }

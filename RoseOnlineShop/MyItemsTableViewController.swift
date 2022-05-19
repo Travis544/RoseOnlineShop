@@ -21,10 +21,11 @@ class MyItemsTableViewController: UITableViewController {
     var itemManager : ItemCollectionManager!
     var userManager : UsersCollectionManager!
     var requestManager : RequestCollectionMaanger!
-    
+    var isItemPrivate=false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        isItemPrivate=false
         imageUtil=ImageUtils()
         itemManager=ItemCollectionManager()
         userManager=UsersCollectionManager()
@@ -62,22 +63,34 @@ class MyItemsTableViewController: UITableViewController {
             alertController.addTextField { textField in
                 textField.placeholder = "Name"
             }
+        
             alertController.addTextField { textField in
                 textField.placeholder = "Is the Item for Purchase?(yes/no)"
             }
             alertController.addTextField { textField in
                 textField.placeholder = "Is the Item for Trade?(yes/no)"
             }
-
-
+        
+        
             
+//        let isItemPrivateAction = UIAlertAction(title: isItemPrivate ? "Set item to public" : "Set item to private" ,style:UIAlertAction.Style.default){
+//            action in
+//
+//            self.isItemPrivate = !self.isItemPrivate
+//
+//        }
+//
             
             // Cancel button
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) { action in
                 print("You pressed cancel")
             }
+        
+        
             alertController.addAction(cancelAction)
-            
+       
+        
+    
             // Positive button
             let createPhotoAction = UIAlertAction(title: "Add Post", style: UIAlertAction.Style.default) { action in
                 print("You pressed create post")

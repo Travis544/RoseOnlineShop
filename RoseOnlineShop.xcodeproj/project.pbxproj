@@ -35,6 +35,7 @@
 		1F4668ED282E234300D0ABA1 /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4668EC282E234300D0ABA1 /* ImageUtils.swift */; };
 		1F56170D2835BFCC0098E246 /* MyItemDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F56170C2835BFCC0098E246 /* MyItemDetailTableViewController.swift */; };
 		1F56170F2835CA4C0098E246 /* TradeBuyLabelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F56170E2835CA4C0098E246 /* TradeBuyLabelController.swift */; };
+		1F5D72BE2835F962005C6B85 /* RequestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F5D72BD2835F962005C6B85 /* RequestDetailViewController.swift */; };
 		1F782823283235A3003E1F92 /* RequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F782822283235A3003E1F92 /* RequestTableViewController.swift */; };
 		1F78282628323AD0003E1F92 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 1F78282528323AD0003E1F92 /* SideMenu */; };
 		1F78282828323B15003E1F92 /* SideNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F78282728323B15003E1F92 /* SideNavViewController.swift */; };
@@ -96,6 +97,7 @@
 		1F4668EC282E234300D0ABA1 /* ImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
 		1F56170C2835BFCC0098E246 /* MyItemDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyItemDetailTableViewController.swift; sourceTree = "<group>"; };
 		1F56170E2835CA4C0098E246 /* TradeBuyLabelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeBuyLabelController.swift; sourceTree = "<group>"; };
+		1F5D72BD2835F962005C6B85 /* RequestDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDetailViewController.swift; sourceTree = "<group>"; };
 		1F782822283235A3003E1F92 /* RequestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTableViewController.swift; sourceTree = "<group>"; };
 		1F78282728323B15003E1F92 /* SideNavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideNavViewController.swift; sourceTree = "<group>"; };
 		1F78282928323D28003E1F92 /* ProfilePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 				1F78282D2832403A003E1F92 /* MyItemsTableViewController.swift */,
 				1F56170C2835BFCC0098E246 /* MyItemDetailTableViewController.swift */,
 				1F56170E2835CA4C0098E246 /* TradeBuyLabelController.swift */,
+				1F5D72BD2835F962005C6B85 /* RequestDetailViewController.swift */,
 			);
 			path = RoseOnlineShop;
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 				1F3942092827610500C444C1 /* AppDelegate.swift in Sources */,
 				1F39424D28276DFA00C444C1 /* UserDocumentManager.swift in Sources */,
 				1F78282A28323D28003E1F92 /* ProfilePageViewController.swift in Sources */,
+				1F5D72BE2835F962005C6B85 /* RequestDetailViewController.swift in Sources */,
 				1FB39C3B282F81AE0078BCE1 /* RequestsCollectionManager.swift in Sources */,
 				1FDC7175282F5A2D009A8C60 /* ItemDocumentManager.swift in Sources */,
 				1FDC7177282F6EAC009A8C60 /* OrderRequestViewController.swift in Sources */,

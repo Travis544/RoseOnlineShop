@@ -30,6 +30,8 @@ class ItemCollectionManager{
         return idToItem[id]
     }
     
+    
+
     public func startListening(byCategory: String?, byAuthor : String?, changeListener: @escaping (() -> Void)){
         var query = _collectionRef.limit(to: 50)
         query=query.order(by: kItemLastTouched)
@@ -70,7 +72,16 @@ class ItemCollectionManager{
     
     
     
-    
+    public func getAvailableTradingItems() -> [Item]{
+        var res = [Item]()
+        for item in latestItems{
+            if item.isAvailable&&item.isTradable{
+                res.append(item)
+            }
+        }
+        
+        return res
+    }
     
     public func addItem(item : Item) {
 //        print(album.albumMembers)

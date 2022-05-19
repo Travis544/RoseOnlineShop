@@ -107,20 +107,28 @@ class RequestTableViewController: UITableViewController {
             cell.itemLabel.text = item.name
             print("LOADING \(item.imageUrl)")
             imageUtils.load(imageView: cell.itemImageView, from: item.imageUrl)
+            
+            TradeBuyLabelController.shared.controlLabels(item: item, tradeLabel: cell.tradeOfferLabel, buyLabel: cell.priceLabel)
+            
         }else{
             cell.itemLabel.text = "Item no longer exist"
         }
-
         
+        if request.itemProposed.count==0{
+            cell.tradeOfferLabel.text = "No item offered for trade"
+        }else if let tradeItem = itemManager.idToItem[request.itemProposed.first?.key ?? ""]{
 //        change this later
-        cell.determineStatusLabel(status: request.status)
-
-
-        cell.priceLabel.text="Amount offered $\(request.moneyOffered)"
+            cell.tradeOfferLabel.text = "Offered to trade for \(tradeItem.name)"
+        }else{
+            cell.tradeOfferLabel.text = "Item no longer exist"
+        }
         
+        cell.determineStatusLabel(status: request.status)
+        cell.priceLabel.text="Amount offered $\(request.moneyOffered)"
         cell.statusLabel.text=request.status
-//        Hidden for now.
-        cell.tradeOfferLabel.isHidden=true
+        
+        
+        
         
         return cell
     }
@@ -161,14 +169,21 @@ class RequestTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier==kItemDetailFromRequestSegue{
+            let idvc = segue.destination as! ItemDetailViewController
+            if let indexPath=tableView.indexPathForSelectedRow{
+                let id=requestManager.latestRequests[indexPath.row].itemRequested
+                idvc.itemId=id
+            }
+        }
     }
-    */
+    
 
 }

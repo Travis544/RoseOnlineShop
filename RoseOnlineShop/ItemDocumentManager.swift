@@ -42,6 +42,13 @@ class ItemDocumentManager {
         listener.stopListening()
     }
     
+    func updateAvailability(isAvailable : Bool){
+        if let item=item{
+            let docRef=_collectionRef.document(item.id!)
+            let data=[kItemAvailable: isAvailable]
+            cudStrategy.update(documentRef: docRef, data: data)
+        }
+    }
     
     func updateDescription(newDesc : String){
         if let item=item{

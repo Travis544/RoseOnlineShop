@@ -15,7 +15,7 @@ class TradeBuyLabelController{
     }
     
     func controlLabels(item : Item, tradeLabel : UILabel, buyLabel : UILabel){
-        if item.isTradable{
+        if item.isTradable {
             tradeLabel.isHidden=false
             tradeLabel.text="Looking to trade"
         }else{

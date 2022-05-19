@@ -20,6 +20,7 @@ class ItemDetailViewController: UIViewController {
     @IBOutlet weak var soldByLabel: UILabel!
     @IBOutlet weak var userProfileImage: UIImageView!
     @IBOutlet weak var userBox: UIStackView!
+    @IBOutlet weak var emailLabel: UILabel!
     var itemId : String!
     var imageUtil = ImageUtils()
     var itemManger : ItemDocumentManager!
@@ -67,6 +68,16 @@ class ItemDetailViewController: UIViewController {
     func updateUserBox(userName : String, imageUrl:String ){
         userBox.isHidden=userName.isEmpty && imageUrl.isEmpty
         soldByLabel.text=userName
+        emailLabel.isHidden=true
+        if let request=requestManager.getUserRequest(uid: AuthManager.shared.currentUser!.uid){
+            if request.status=="accepted"{
+                emailLabel.text  = UserDocumentManager.shared.displayEmail
+                emailLabel.isHidden=false
+                emailLabel.isHighlighted=true
+            }
+            
+        }
+        
         imageUtil.load(imageView: userProfileImage, from: imageUrl)
     }
     
