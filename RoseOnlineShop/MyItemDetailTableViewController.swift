@@ -11,6 +11,16 @@ class ItemRequestTableViewCell : UITableViewCell{
     @IBOutlet weak var requestFromUserLabel: UILabel!
     @IBOutlet weak var tradeOfferedLabel: UILabel!
     @IBOutlet weak var moneyOfferedLabel: UILabel!
+    var delegate: MyItemDetailWithRequestTableViewController?
+    @IBAction func pressedAcceptRequest(_ sender: Any) {
+        
+        
+    }
+    
+    
+    @IBAction func pressedRejectRequest(_ sender: Any) {
+    }
+    
 }
 
 
@@ -21,6 +31,7 @@ class MyItemDetailWithRequestTableViewController: UITableViewController {
     
     @IBOutlet weak var itemDescription: UITextView!
     @IBOutlet weak var buyLabel: UILabel!
+    var imageUtils : ImageUtils!
     var itemManager : ItemDocumentManager!
     var itemID : String!
     var requestManager : RequestCollectionMaanger!
@@ -30,6 +41,7 @@ class MyItemDetailWithRequestTableViewController: UITableViewController {
         requestManager = RequestCollectionMaanger()
         itemManager = ItemDocumentManager()
         userCollectionManager = UsersCollectionManager()
+        imageUtils = ImageUtils()
         itemManager.startListening(for: itemID) {
             self.requestManager.startListening(uid: nil, itemID: self.itemManager.item!.id) {
                 
@@ -54,6 +66,19 @@ class MyItemDetailWithRequestTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    
+    func acceptRequest(_ cell: UITableViewCell){
+        if let indexPath=self.tableView.indexPath(for: cell){
+            let id=self.requestManager.latestRequests[indexPath.row]
+            
+        }
+        
+    }
+    
+    func rejectRequest(){
+        
+    }
 
     // MARK: - Table view data source
 
@@ -72,16 +97,23 @@ class MyItemDetailWithRequestTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kItemRequestTabelViewCell, for: indexPath)
         as! ItemRequestTableViewCell
-
+       
         // Configure the cell...
         let request : Request = requestManager.latestRequests[indexPath.row]
         let userID=request.fromUser
         cell.requestFromUserLabel.text=userCollectionManager.getFullName(uid: userID)
         if let item=self.itemManager.item{
+            imageUtils.load(imageView: self.itemImage, from: item.imageUrl)
             TradeBuyLabelController.shared.controlLabels(item: item, tradeLabel: cell.tradeOfferedLabel, buyLabel: cell.moneyOfferedLabel)
             
             cell.moneyOfferedLabel.text = "Money offered:\(request.moneyOffered)"
+            
+            
+            
         }
+        
+        cell.delegate = self
+        
 //        cell.tradeOfferedLabel.text = " "
         return cell
     }

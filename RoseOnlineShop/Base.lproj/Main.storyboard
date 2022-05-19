@@ -483,21 +483,27 @@
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wDS-K8-Gl6">
-                                            <rect key="frame" x="227" y="118" width="167" height="31"/>
+                                            <rect key="frame" x="227" y="101.5" width="167" height="47.5"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7X-fP-LCl">
-                                                    <rect key="frame" x="0.0" y="0.0" width="73.5" height="31"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="73.5" height="47.5"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="filled" title="Accept ">
                                                         <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="pressedAcceptRequest:" destination="LTM-X6-hgy" eventType="touchUpInside" id="Iml-7G-rKA"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OFO-Gh-eVZ">
-                                                    <rect key="frame" x="93.5" y="0.0" width="73.5" height="31"/>
+                                                    <rect key="frame" x="93.5" y="0.0" width="73.5" height="47.5"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="filled" title="Reject">
                                                         <color key="baseBackgroundColor" systemColor="systemRedColor"/>
                                                     </buttonConfiguration>
+                                                    <connections>
+                                                        <action selector="pressedRejectRequest:" destination="LTM-X6-hgy" eventType="touchUpInside" id="BA1-8y-khH"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </stackView>
@@ -505,6 +511,7 @@
                                     <constraints>
                                         <constraint firstItem="TuG-Jd-9LY" firstAttribute="top" secondItem="Coo-RQ-oxf" secondAttribute="top" constant="10" id="Ivq-yQ-8vC"/>
                                         <constraint firstAttribute="trailing" secondItem="TuG-Jd-9LY" secondAttribute="trailing" id="KMc-MU-yIt"/>
+                                        <constraint firstItem="wDS-K8-Gl6" firstAttribute="top" secondItem="TuG-Jd-9LY" secondAttribute="bottom" id="LIZ-OM-bOB"/>
                                         <constraint firstItem="TuG-Jd-9LY" firstAttribute="leading" secondItem="Coo-RQ-oxf" secondAttribute="leading" constant="5" id="fqJ-Jj-JSc"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="wDS-K8-Gl6" secondAttribute="bottom" constant="19" id="wlS-tt-pgl"/>
                                         <constraint firstItem="wDS-K8-Gl6" firstAttribute="trailing" secondItem="Coo-RQ-oxf" secondAttribute="trailingMargin" id="xk0-Up-tAG"/>
@@ -528,6 +535,7 @@
                         <outlet property="buyLabel" destination="Zay-Cd-veZ" id="5bh-Xx-Yjt"/>
                         <outlet property="itemDescription" destination="IdJ-MX-XQz" id="K2c-1j-bo3"/>
                         <outlet property="itemImage" destination="RZv-Dn-25Z" id="5ya-jG-rfw"/>
+                        <outlet property="itemNameLabel" destination="b8P-XY-uXG" id="uXT-aZ-ITw"/>
                         <outlet property="tradeLabel" destination="nk3-W8-XUw" id="hHx-PF-6nx"/>
                     </connections>
                 </tableViewController>

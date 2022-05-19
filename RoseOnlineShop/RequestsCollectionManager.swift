@@ -72,6 +72,13 @@ class RequestCollectionMaanger{
         }
     }
     
+    public func acceptRequest(id : String){
+        var docRef=self._collectionRef.document(id)
+        let data=[kStatus:"accepted"]
+        cudStrategy.update(documentRef: docRef,
+                           data:data)
+    }
+    
     
     
 }
