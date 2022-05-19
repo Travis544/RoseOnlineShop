@@ -13,7 +13,11 @@ class RequestTableViewCell : UITableViewCell{
     @IBOutlet weak var tradeOfferLabel: UILabel!
     @IBOutlet weak var itemLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    var delegate: RequestTableViewController?
     
+    @IBAction func seeItemDetails(_ sender: Any) {
+        delegate?.seeItemDetails(self)
+    }
     
     func determineStatusLabel(status : String){
         switch status {
@@ -67,6 +71,16 @@ class RequestTableViewController: UITableViewController {
         
     }
     
+    func acceptRequest(_ cell: UITableViewCell){
+        
+    }
+    
+    
+    
+    func seeItemDetails(_ cell: UITableViewCell){
+        self.performSegue(withIdentifier: kItemDetailFromRequestSegue, sender: cell)
+        
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -100,7 +114,7 @@ class RequestTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: kRequestTableViewCell, for: indexPath) as! RequestTableViewCell
 
         // Configure the cell...
-       
+        cell.delegate=self
         let request=requestManager.latestRequests[indexPath.row]
 //        cell.statusLabel.text=request.status
         if let item = itemManager.idToItem[request.itemRequested]{
@@ -174,7 +188,7 @@ class RequestTableViewController: UITableViewController {
     }
     
     @IBAction func pressedRequestedItemImage(_ sender: Any) {
-        self.performSegue(withIdentifier: kRequestDetailSegue, sender: self)
+        self.performSegue(withIdentifier: kItemDetailFromRequestSegue, sender: self)
     }
     // MARK: - Navigation
 
@@ -184,8 +198,13 @@ class RequestTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         if segue.identifier==kItemDetailFromRequestSegue{
             let idvc = segue.destination as! ItemDetailViewController
-            if let indexPath=tableView.indexPathForSelectedRow{
-                let id=requestManager.latestRequests[indexPath.row].itemRequested
+//            if let indexPath=tableView.indexPathForSelectedRow{
+//                let id=requestManager.latestRequests[indexPath.row].itemRequested
+//                idvc.itemId=id
+//            }
+            let cell = sender as! UITableViewCell
+            if let indexPath=self.tableView.indexPath(for: cell){
+               let  id=requestManager.latestRequests[indexPath.row].itemRequested
                 idvc.itemId=id
             }
         }

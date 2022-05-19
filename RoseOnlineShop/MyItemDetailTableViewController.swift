@@ -15,16 +15,16 @@ class ItemRequestTableViewCell : RequestTableViewCell{
     @IBOutlet weak var rejectButton: UIButton!
     
     
-    var delegate: MyItemDetailWithRequestTableViewController?
+    var delegate2: MyItemDetailWithRequestTableViewController?
     @IBAction func pressedAcceptRequest(_ sender: Any) {
-        delegate?.acceptRequest(self)
+        delegate2?.acceptRequest(self)
     }
     
     
     @IBAction func pressedRejectRequest(_ sender: Any) {
 //        acceptButton.isHidden=true
 //        rejectButton.isHidden=true
-        delegate?.rejectRequest(self)
+        delegate2?.rejectRequest(self)
 //        statusLabel.text="rejected"
         
     }
@@ -181,7 +181,7 @@ class MyItemDetailWithRequestTableViewController: UITableViewController,  UIText
             tradeLabel.isHidden=true
         }
         
-        cell.delegate = self
+        cell.delegate2 = self
         cell.statusLabel.text=request.status
     
         cell.determineStatusLabel(status: request.status)
@@ -239,6 +239,7 @@ class MyItemDetailWithRequestTableViewController: UITableViewController,  UIText
                 rdvc.item=self.itemManager.item
                 let id = self.requestManager.latestRequests[indexPath.row].id!
                 rdvc.requestID = id
+                print("GIVING THE ITEM")
             }
             
         }

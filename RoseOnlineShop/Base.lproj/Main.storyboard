@@ -134,42 +134,44 @@
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="xYT-2R-GFb" secondAttribute="height" multiplier="409:166" id="hI2-jn-jkd"/>
                                                     </constraints>
-                                                    <connections>
-                                                        <outletCollection property="gestureRecognizers" destination="tfg-me-Uel" appends="YES" id="6UF-sO-BMq"/>
-                                                    </connections>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NHd-CB-iAt">
                                                     <rect key="frame" x="0.0" y="144.5" width="409" height="144.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4qp-ob-cAn">
-                                                            <rect key="frame" x="0.0" y="0.0" width="409" height="36"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="409" height="29"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Money offered" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rHb-fW-Y6N">
-                                                            <rect key="frame" x="0.0" y="36" width="409" height="36.5"/>
+                                                            <rect key="frame" x="0.0" y="29" width="409" height="29"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trade offered" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dho-98-lQD">
-                                                            <rect key="frame" x="0.0" y="72.5" width="409" height="36"/>
+                                                            <rect key="frame" x="0.0" y="58" width="409" height="28.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ijU-SV-zhN">
-                                                            <rect key="frame" x="0.0" y="108.5" width="409" height="36"/>
+                                                            <rect key="frame" x="0.0" y="86.5" width="409" height="29"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eF2-5N-J5F">
+                                                            <rect key="frame" x="0.0" y="115.5" width="409" height="29"/>
+                                                            <state key="normal" title="Button"/>
+                                                            <buttonConfiguration key="configuration" style="plain" title="See item details"/>
+                                                            <connections>
+                                                                <action selector="seeItemDetails:" destination="4fq-xO-tJV" eventType="touchUpInside" id="Obc-gc-Dv4"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <gestureRecognizers/>
-                                                    <connections>
-                                                        <outletCollection property="gestureRecognizers" destination="EhF-AH-hbX" appends="YES" id="BOK-tc-niw"/>
-                                                    </connections>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -192,6 +194,7 @@
                                     <outlet property="priceLabel" destination="rHb-fW-Y6N" id="pbj-cf-BE4"/>
                                     <outlet property="statusLabel" destination="ijU-SV-zhN" id="qQl-iw-VvK"/>
                                     <outlet property="tradeOfferLabel" destination="Dho-98-lQD" id="oOX-Gc-zNL"/>
+                                    <segue destination="fwX-9S-iWJ" kind="show" identifier="requestDetailSegue" id="nDS-sQ-21F"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -208,21 +211,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="fwX-9S-iWJ" kind="show" identifier="requestDetailSegue" id="5ac-uo-uZW"/>
                         <segue destination="0OX-Ox-JpO" kind="show" identifier="itemDetailFromRequestSegue" id="BSK-MY-ZZC"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RqG-1H-EZG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="tfg-me-Uel">
-                    <connections>
-                        <action selector="pressedRequestedItemImage:" destination="oQk-AF-afh" id="k6H-tr-GAE"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="EhF-AH-hbX">
-                    <connections>
-                        <action selector="pressedRequestStack:" destination="oQk-AF-afh" id="p7g-bg-CTr"/>
-                    </connections>
-                </tapGestureRecognizer>
+                <tapGestureRecognizer id="EhF-AH-hbX"/>
+                <tapGestureRecognizer id="tfg-me-Uel"/>
             </objects>
             <point key="canvasLocation" x="813" y="-713"/>
         </scene>
@@ -1348,7 +1342,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="bRq-dd-jwG"/>
-        <segue reference="5ac-uo-uZW"/>
+        <segue reference="nDS-sQ-21F"/>
         <segue reference="xm6-ce-0gL"/>
         <segue reference="nlL-Uy-eYY"/>
         <segue reference="3O5-4C-Flb"/>

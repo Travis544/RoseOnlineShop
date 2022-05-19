@@ -120,16 +120,25 @@ class RequestDetailViewController: UIViewController {
     
     @IBAction func pressedView(_ sender: Any) {
         print("PRESSED VIEW")
+        self.performSegue(withIdentifier: kRequestDetailItemOfferedSegue, sender: self)
     }
     
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        if segue.identifier==kRequestDetailItemOfferedSegue{
+            var idvc=segue.destination as! ItemDetailViewController
+            if let item=itemToTradeManager.item{
+                print("GIVING THE ITEM ID")
+                idvc.itemId = item.id
+
+            }
+        }
     }
-    */
+    
 
 }
