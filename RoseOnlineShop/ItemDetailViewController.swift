@@ -23,29 +23,45 @@ class ItemDetailViewController: UIViewController {
     var itemId : String!
     var imageUtil = ImageUtils()
     var itemManger : ItemDocumentManager!
+    var requestManager : RequestCollectionMaanger!
 //    var userManager : UserDocumentManager!
     override func viewDidLoad() {
         super.viewDidLoad()
         itemDescription.isEditable=false
         itemManger=ItemDocumentManager()
 //        userManager=UserDocumentManager()
+        requestManager = RequestCollectionMaanger()
         itemManger.startListening(for: itemId) {
             if let item=self.itemManger.item{
                 UserDocumentManager.shared.startListening(for: item.owner) {
                         self.updateView()
-                }
+                
                 
                 
                 if item.owner==AuthManager.shared.currentUser!.uid{
                     self.proposeOfferButton.isHidden=true
                 }
+                
+                
+                self.requestManager.startListening(uid: nil, itemID: item.id) {
+                    self.updateProposeButton()
+                }
             }
             
+          
             
         }
         
      
         // Do any additional setup after loading the view.
+    }
+    }
+    
+    func updateProposeButton(){
+        if requestManager.didUserMakeRequest(uid: AuthManager.shared.currentUser!.uid){
+            proposeOfferButton.isUserInteractionEnabled=false
+            proposeOfferButton.setTitle("Request submitted", for: UIControl.State.normal)
+        }
     }
     
     func updateUserBox(userName : String, imageUrl:String ){

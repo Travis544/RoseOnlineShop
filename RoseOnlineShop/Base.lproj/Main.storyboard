@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Trj-l8-BLY">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Trj-l8-BLY">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -93,7 +93,13 @@
                             <constraint firstItem="939-0H-5aR" firstAttribute="top" secondItem="Gc0-SS-cda" secondAttribute="top" constant="102" id="sra-8R-5S3"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="JWZ-6v-M0C"/>
+                    <navigationItem key="navigationItem" id="JWZ-6v-M0C">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="account_box_36pt" id="liG-sh-MHx">
+                            <connections>
+                                <segue destination="zMX-vc-IHz" kind="show" id="xm6-ce-0gL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="stackView" destination="83L-ZN-Ort" id="iwp-lV-L8Y"/>
                         <segue destination="Gni-lt-Pv4" kind="show" identifier="listingSegue" id="Hau-A8-mDT"/>
@@ -176,7 +182,7 @@
                                     <outlet property="itemImageView" destination="xYT-2R-GFb" id="kal-h9-eLN"/>
                                     <outlet property="itemLabel" destination="4qp-ob-cAn" id="RUd-EC-gAF"/>
                                     <outlet property="priceLabel" destination="rHb-fW-Y6N" id="pbj-cf-BE4"/>
-                                    <outlet property="stausLabel" destination="ijU-SV-zhN" id="R7N-Jj-8u5"/>
+                                    <outlet property="statusLabel" destination="ijU-SV-zhN" id="qQl-iw-VvK"/>
                                     <outlet property="tradeOfferLabel" destination="Dho-98-lQD" id="oOX-Gc-zNL"/>
                                 </connections>
                             </tableViewCell>
@@ -186,7 +192,9 @@
                             <outlet property="delegate" destination="oQk-AF-afh" id="zMG-GP-iSI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="RJH-vO-Hbk"/>
+                    <navigationItem key="navigationItem" id="RJH-vO-Hbk">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="y3o-VY-Hty"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RqG-1H-EZG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -422,16 +430,16 @@
                                         </label>
                                     </subviews>
                                 </stackView>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iQP-2w-xLU">
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="iQP-2w-xLU">
                                     <rect key="frame" x="10" y="355.5" width="394" height="133.5"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7i9-Dg-BQA">
-                                            <rect key="frame" x="0.0" y="0.0" width="87.5" height="20.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="394" height="20.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IdJ-MX-XQz">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="fjnfanf" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="IdJ-MX-XQz">
                                             <rect key="frame" x="0.0" y="28.5" width="394" height="105"/>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -456,57 +464,59 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemRequestTableViewCell" rowHeight="179" id="LTM-X6-hgy" customClass="ItemRequestTableViewCell" customModule="RoseOnlineShop" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="533.5" width="414" height="179"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="itemRequestTableViewCell" rowHeight="149" id="LTM-X6-hgy" customClass="ItemRequestTableViewCell" customModule="RoseOnlineShop" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="533.5" width="414" height="149"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LTM-X6-hgy" id="Coo-RQ-oxf">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="179"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="149"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="TuG-Jd-9LY">
-                                            <rect key="frame" x="5" y="10" width="409" height="91.5"/>
+                                            <rect key="frame" x="5" y="10" width="409" height="92"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Request from User" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JBQ-3b-Vgh">
-                                                    <rect key="frame" x="0.0" y="0.0" width="409" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="409" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Money offered:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HKK-RS-Nwg">
-                                                    <rect key="frame" x="0.0" y="35.5" width="409" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="27" width="409" height="11.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Trade offered: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpx-Jq-hWS">
-                                                    <rect key="frame" x="0.0" y="71" width="409" height="20.5"/>
+                                                    <rect key="frame" x="0.0" y="53.5" width="409" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wos-wH-1QT">
+                                                    <rect key="frame" x="0.0" y="80.5" width="409" height="11.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </stackView>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wDS-K8-Gl6">
-                                            <rect key="frame" x="227" y="101.5" width="167" height="47.5"/>
+                                            <rect key="frame" x="235" y="102" width="159" height="31"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7X-fP-LCl">
-                                                    <rect key="frame" x="0.0" y="0.0" width="73.5" height="47.5"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oyt-R2-bOY">
+                                                    <rect key="frame" x="0.0" y="0.0" width="69.5" height="31"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="filled" title="Accept ">
-                                                        <color key="baseBackgroundColor" systemColor="systemGreenColor"/>
-                                                    </buttonConfiguration>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Accept"/>
                                                     <connections>
-                                                        <action selector="pressedAcceptRequest:" destination="LTM-X6-hgy" eventType="touchUpInside" id="Iml-7G-rKA"/>
+                                                        <action selector="pressedAcceptRequest:" destination="LTM-X6-hgy" eventType="touchUpInside" id="4kU-Hn-hPe"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OFO-Gh-eVZ">
-                                                    <rect key="frame" x="93.5" y="0.0" width="73.5" height="47.5"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z6p-Do-tjy">
+                                                    <rect key="frame" x="89.5" y="0.0" width="69.5" height="31"/>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="filled" title="Reject">
-                                                        <color key="baseBackgroundColor" systemColor="systemRedColor"/>
-                                                    </buttonConfiguration>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Reject"/>
                                                     <connections>
-                                                        <action selector="pressedRejectRequest:" destination="LTM-X6-hgy" eventType="touchUpInside" id="BA1-8y-khH"/>
+                                                        <action selector="pressedRejectRequest:" destination="LTM-X6-hgy" eventType="touchUpInside" id="f8Q-mK-7yR"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -517,14 +527,17 @@
                                         <constraint firstAttribute="trailing" secondItem="TuG-Jd-9LY" secondAttribute="trailing" id="KMc-MU-yIt"/>
                                         <constraint firstItem="wDS-K8-Gl6" firstAttribute="top" secondItem="TuG-Jd-9LY" secondAttribute="bottom" id="LIZ-OM-bOB"/>
                                         <constraint firstItem="TuG-Jd-9LY" firstAttribute="leading" secondItem="Coo-RQ-oxf" secondAttribute="leading" constant="5" id="fqJ-Jj-JSc"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="wDS-K8-Gl6" secondAttribute="bottom" constant="19" id="wlS-tt-pgl"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="wDS-K8-Gl6" secondAttribute="bottom" constant="5" id="wlS-tt-pgl"/>
                                         <constraint firstItem="wDS-K8-Gl6" firstAttribute="trailing" secondItem="Coo-RQ-oxf" secondAttribute="trailingMargin" id="xk0-Up-tAG"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
+                                    <outlet property="acceptButton" destination="Oyt-R2-bOY" id="Dan-gD-4It"/>
                                     <outlet property="moneyOfferedLabel" destination="HKK-RS-Nwg" id="W4u-vy-BBJ"/>
+                                    <outlet property="rejectButton" destination="z6p-Do-tjy" id="cR8-rA-Aqd"/>
                                     <outlet property="requestFromUserLabel" destination="JBQ-3b-Vgh" id="FLG-Le-3DZ"/>
+                                    <outlet property="statusLabel" destination="Wos-wH-1QT" id="t4i-PU-c8i"/>
                                     <outlet property="tradeOfferedLabel" destination="fpx-Jq-hWS" id="U1R-rk-yP7"/>
                                 </connections>
                             </tableViewCell>
@@ -538,6 +551,7 @@
                     <connections>
                         <outlet property="buyLabel" destination="Zay-Cd-veZ" id="5bh-Xx-Yjt"/>
                         <outlet property="itemDescription" destination="IdJ-MX-XQz" id="K2c-1j-bo3"/>
+                        <outlet property="itemDescriptionField" destination="IdJ-MX-XQz" id="rXg-5S-ioz"/>
                         <outlet property="itemImage" destination="RZv-Dn-25Z" id="5ya-jG-rfw"/>
                         <outlet property="itemNameLabel" destination="b8P-XY-uXG" id="uXT-aZ-ITw"/>
                         <outlet property="tradeLabel" destination="nk3-W8-XUw" id="hHx-PF-6nx"/>
@@ -683,7 +697,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="YFc-BN-Tgl">
-                        <barButtonItem key="leftBarButtonItem" image="account_box_36pt" id="Qqs-qt-CBt">
+                        <barButtonItem key="rightBarButtonItem" image="account_box_36pt" id="Qqs-qt-CBt">
                             <connections>
                                 <segue destination="zMX-vc-IHz" kind="show" id="yoi-43-6pg"/>
                             </connections>
@@ -692,7 +706,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2gq-Fo-EUQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3090" y="-483"/>
+            <point key="canvasLocation" x="2675" y="-492"/>
         </scene>
         <!--Item Detail View Controller-->
         <scene sceneID="gcS-bv-H46">
@@ -892,6 +906,7 @@
                                                 <buttonConfiguration key="configuration" style="filled" title="Submit offer!"/>
                                                 <connections>
                                                     <action selector="pressedSubmitOffer:" destination="FIW-9x-fnH" eventType="touchUpInside" id="QLb-EV-uKV"/>
+                                                    <segue destination="oQk-AF-afh" kind="show" id="JOS-X3-tO4"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1032,6 +1047,10 @@
             <point key="canvasLocation" x="-451" y="185"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="xm6-ce-0gL"/>
+        <segue reference="JOS-X3-tO4"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="account_box_36pt" width="36" height="36"/>
         <image name="cart.fill" catalog="system" width="128" height="102"/>
@@ -1054,14 +1073,8 @@
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

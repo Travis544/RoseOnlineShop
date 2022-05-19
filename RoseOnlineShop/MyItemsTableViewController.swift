@@ -42,6 +42,78 @@ class MyItemsTableViewController: UITableViewController {
                                                             target: self,
                                                             action: #selector(showAddQuoteDialog))
     }
+    
+    
+    
+    @objc func showAddQuoteDialog() {
+            let alertController = UIAlertController(title: "Create a new Post",
+                                                    message: "",
+                                                    preferredStyle: UIAlertController.Style.alert)
+            
+            alertController.addTextField { textField in
+                textField.placeholder = "Category"
+            }
+            alertController.addTextField { textField in
+                textField.placeholder = "Image Url"
+            }
+            alertController.addTextField { textField in
+                textField.placeholder = "Description"
+            }
+            alertController.addTextField { textField in
+                textField.placeholder = "Name"
+            }
+            alertController.addTextField { textField in
+                textField.placeholder = "Is the Item for Purchase?(yes/no)"
+            }
+            alertController.addTextField { textField in
+                textField.placeholder = "Is the Item for Trade?(yes/no)"
+            }
+
+
+            
+            
+            // Cancel button
+            let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) { action in
+                print("You pressed cancel")
+            }
+            alertController.addAction(cancelAction)
+            
+            // Positive button
+            let createPhotoAction = UIAlertAction(title: "Add Post", style: UIAlertAction.Style.default) { action in
+                print("You pressed create post")
+                
+                let categoryField = alertController.textFields![0] as UITextField
+                let imageField = alertController.textFields![1] as UITextField
+                let descriptionField = alertController.textFields![2] as UITextField
+                let nameField = alertController.textFields![3] as UITextField
+                let buyableField = alertController.textFields![4] as UITextField
+                let tradeableField = alertController.textFields![5] as UITextField
+                
+                var buyState = Bool()
+                var tradeState = Bool()
+                if buyableField.text! == "yes"{
+                    buyState = true
+                }else {
+                    buyState = false
+                }
+                
+                if tradeableField.text! == "yes"{
+                    tradeState = true
+                }else {
+                    tradeState = false
+                }
+
+                
+                let item = Item(category:  categoryField.text!, imageUrl: imageField.text!, name: nameField.text!, owner: AuthManager.shared.currentUser!.uid, isAvailable: true, description: descriptionField.text!, isTradable: tradeState, isBuyable: buyState)
+                self.itemManager.addItem(item: item)
+                
+            }
+            alertController.addAction(createPhotoAction)
+                // finish calling upload
+            present(alertController, animated: true)
+            
+            
+        }
 
     // MARK: - Table view data source
 

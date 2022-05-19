@@ -21,12 +21,12 @@ class ItemDocumentManager {
     var _collectionRef: CollectionReference
     var item : Item?
     var listener : ListenerStrategy
-  
+    var cudStrategy : CUDStrategy
     
     public init() {
         _collectionRef = Firestore.firestore().collection(kItemCollectionPath)
         listener=ListenerStrategy()
-        
+        cudStrategy=CUDStrategy()
     }
 
     
@@ -43,6 +43,13 @@ class ItemDocumentManager {
     }
     
     
+    func updateDescription(newDesc : String){
+        if let item=item{
+            let docRef=_collectionRef.document(item.id!)
+            let data=[kItemDescription: newDesc]
+            cudStrategy.update(documentRef: docRef, data: data)
+        }
+    }
 
     
    

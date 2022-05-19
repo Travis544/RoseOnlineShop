@@ -40,7 +40,7 @@ class CategoryPageViewController: UIViewController {
 //       label.text="THIS IS A TEST"
 //       myView.addSubview(label)
 //       myView.translatesAutoresizingMaskIntoConstraints = false
-        self.navigationItem.leftBarButtonItem=nil
+//        self.navigationItem.leftBarButtonItem=nil
 
     }
     

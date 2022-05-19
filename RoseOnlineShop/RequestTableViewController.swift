@@ -9,10 +9,36 @@ import UIKit
 class RequestTableViewCell : UITableViewCell{
     
     @IBOutlet weak var itemImageView: UIImageView!
-    @IBOutlet weak var stausLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var tradeOfferLabel: UILabel!
     @IBOutlet weak var itemLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    
+    
+    func determineStatusLabel(status : String){
+        switch status {
+        case "pending":
+           
+            self.statusLabel.textColor = UIColor.systemOrange
+        case "rejected":
+            statusLabel.textColor = UIColor.systemRed
+            rejectStatus()
+        case "accepted":
+            
+            statusLabel.textColor = UIColor.systemGreen
+            acceptStatus()
+        default:
+            statusLabel.textColor = UIColor.black
+        }
+    }
+    
+    func acceptStatus(){
+        
+    }
+    
+    func rejectStatus(){
+        
+    }
 }
 
 
@@ -76,7 +102,7 @@ class RequestTableViewController: UITableViewController {
         // Configure the cell...
        
         let request=requestManager.latestRequests[indexPath.row]
-        cell.stausLabel.text=request.status
+//        cell.statusLabel.text=request.status
         if let item = itemManager.idToItem[request.itemRequested]{
             cell.itemLabel.text = item.name
             print("LOADING \(item.imageUrl)")
@@ -85,21 +111,14 @@ class RequestTableViewController: UITableViewController {
             cell.itemLabel.text = "Item no longer exist"
         }
 
-        switch request.status {
-        case "pending":
-            cell.stausLabel.textColor = UIColor.systemOrange
-        case "rejected":
-            cell.stausLabel.textColor = UIColor.systemRed
-        case "accepted":
-            cell.stausLabel.textColor = UIColor.systemGreen
-        default:
-            cell.stausLabel.textColor = UIColor.black
-        }
+        
+//        change this later
+        cell.determineStatusLabel(status: request.status)
 
 
         cell.priceLabel.text="Amount offered $\(request.moneyOffered)"
         
-        
+        cell.statusLabel.text=request.status
 //        Hidden for now.
         cell.tradeOfferLabel.isHidden=true
         

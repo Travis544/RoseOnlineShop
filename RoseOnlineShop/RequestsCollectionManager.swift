@@ -12,6 +12,7 @@ class RequestCollectionMaanger{
     var listener : ListenerStrategy
     var latestRequests: [Request]
     var cudStrategy : CUDStrategy
+    var isListeningForItemRequest : Bool
 //    var recentlyAddedItem : String?
     
     
@@ -20,22 +21,32 @@ class RequestCollectionMaanger{
         listener=ListenerStrategy()
         latestRequests = [Request]()
        cudStrategy=CUDStrategy()
+        isListeningForItemRequest = false
 //        recentlyAddedItem = nil
     }
     
     
 
     
-    
+    public func didUserMakeRequest(uid : String) -> Bool{
+        for request in latestRequests {
+            if request.fromUser==uid{
+                return true
+            }
+        }
+        
+        return false
+    }
     
     public func startListening(uid:String?, itemID:String?, changeListener: @escaping (() -> Void)){
-        
+        isListeningForItemRequest=false
         var query = _collectionRef.order(by: "created")
         if let uid=uid{
             query=query.whereField(kFromUser, isEqualTo: uid)
         }
 
         if let itemID = itemID {
+            isListeningForItemRequest=true
             query=query.whereField(kItemRequested, isEqualTo: itemID)
         }
         listener.listenForCollection(query: query) { docs in
@@ -73,10 +84,26 @@ class RequestCollectionMaanger{
     }
     
     public func acceptRequest(id : String){
+        print("REQUEST ACCEPTED!!!")
         var docRef=self._collectionRef.document(id)
         let data=[kStatus:"accepted"]
         cudStrategy.update(documentRef: docRef,
                            data:data)
+        
+        if isListeningForItemRequest{
+            for request in latestRequests {
+                if request.id != id{
+                    rejectRequest(id: request.id!)
+                }
+            }
+        }
+        
+    }
+    
+    public func rejectRequest(id : String){
+        let data=[kStatus:"rejected"]
+        let docRef=self._collectionRef.document(id)
+        cudStrategy.update(documentRef: docRef, data: data)
     }
     
     

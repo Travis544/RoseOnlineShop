@@ -7,24 +7,48 @@
 
 import UIKit
 
-class ItemRequestTableViewCell : UITableViewCell{
+class ItemRequestTableViewCell : RequestTableViewCell{
     @IBOutlet weak var requestFromUserLabel: UILabel!
     @IBOutlet weak var tradeOfferedLabel: UILabel!
+    @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var moneyOfferedLabel: UILabel!
+    @IBOutlet weak var rejectButton: UIButton!
+    
+    
     var delegate: MyItemDetailWithRequestTableViewController?
     @IBAction func pressedAcceptRequest(_ sender: Any) {
-        
-        
+        delegate?.acceptRequest(self)
     }
     
     
     @IBAction func pressedRejectRequest(_ sender: Any) {
+//        acceptButton.isHidden=true
+//        rejectButton.isHidden=true
+        delegate?.rejectRequest(self)
+//        statusLabel.text="rejected"
+        
     }
+    
+    override func rejectStatus() {
+        hideButtons()
+    }
+    
+    override func acceptStatus() {
+       
+        hideButtons()
+    }
+    
+    func hideButtons(){
+        print("HIDE BUTTON")
+        acceptButton.isHidden=true
+        rejectButton.isHidden=true
+    }
+    
     
 }
 
 
-class MyItemDetailWithRequestTableViewController: UITableViewController {
+class MyItemDetailWithRequestTableViewController: UITableViewController,  UITextViewDelegate {
     @IBOutlet weak var itemImage : UIImageView!
     @IBOutlet weak var itemNameLabel: UILabel!
     @IBOutlet weak var tradeLabel: UILabel!
@@ -36,27 +60,38 @@ class MyItemDetailWithRequestTableViewController: UITableViewController {
     var itemID : String!
     var requestManager : RequestCollectionMaanger!
     var userCollectionManager : UsersCollectionManager!
+    @IBOutlet weak var itemDescriptionField: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        itemDescriptionField.delegate=self
         requestManager = RequestCollectionMaanger()
         itemManager = ItemDocumentManager()
         userCollectionManager = UsersCollectionManager()
         imageUtils = ImageUtils()
         itemManager.startListening(for: itemID) {
-            self.requestManager.startListening(uid: nil, itemID: self.itemManager.item!.id) {
+            self.requestManager.startListening(uid: nil, itemID: self.itemManager.item!.id) { [self] in
                 
                 if let item=self.itemManager.item{
                     self.itemNameLabel.text=item.name
                     TradeBuyLabelController.shared.controlLabels(item: item, tradeLabel: self.tradeLabel, buyLabel: self.buyLabel)
+                    self.itemDescriptionField.text=item.description
+                    self.itemDescriptionField.textColor=UIColor.systemBlue
+                    print("DESCRIPTION: \(itemDescriptionField.text) c")
+                    
+//                    self.itemDescriptionField.textColor=UIColor.white
                 }
                 
-                
+               
                 self.tableView.reloadData()
             }
             
             self.userCollectionManager.startListening {
                 
             }
+            
+            
+            
         }
         
     
@@ -70,14 +105,18 @@ class MyItemDetailWithRequestTableViewController: UITableViewController {
     
     func acceptRequest(_ cell: UITableViewCell){
         if let indexPath=self.tableView.indexPath(for: cell){
-            let id=self.requestManager.latestRequests[indexPath.row]
+            let id=self.requestManager.latestRequests[indexPath.row].id!
+            self.requestManager.acceptRequest(id: id)
             
         }
         
     }
     
-    func rejectRequest(){
-        
+    func rejectRequest(_ cell: UITableViewCell){
+        if let indexPath=self.tableView.indexPath(for: cell){
+            let id=self.requestManager.latestRequests[indexPath.row].id!
+            self.requestManager.rejectRequest(id: id)
+        }
     }
 
     // MARK: - Table view data source
@@ -86,6 +125,30 @@ class MyItemDetailWithRequestTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of sections
        return 1
     }
+    
+    
+    @IBAction func nameChanged(_ sender: Any) {
+       
+    }
+    
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+
+      // Run code here for when user begins type into the text view
+
+    }
+    
+    func textViewDidChange(_ textView: UITextView){
+        print("UPDATING DESCRIPTION")
+        itemManager.updateDescription(newDesc: textView.text)
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+
+      // Run code here for when user ends editing text view
+        
+    }
+    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
@@ -107,13 +170,17 @@ class MyItemDetailWithRequestTableViewController: UITableViewController {
             TradeBuyLabelController.shared.controlLabels(item: item, tradeLabel: cell.tradeOfferedLabel, buyLabel: cell.moneyOfferedLabel)
             
             cell.moneyOfferedLabel.text = "Money offered:\(request.moneyOffered)"
-            
-            
-            
         }
         
-        cell.delegate = self
+     
+        if request.itemProposed.count==0{
+            tradeLabel.isHidden=true
+        }
         
+      cell.delegate = self
+        cell.statusLabel.text=request.status
+    
+        cell.determineStatusLabel(status: request.status)
 //        cell.tradeOfferedLabel.text = " "
         return cell
     }

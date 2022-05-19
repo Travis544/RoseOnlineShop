@@ -32,7 +32,7 @@ class ItemCollectionManager{
     
     public func startListening(byCategory: String?, byAuthor : String?, changeListener: @escaping (() -> Void)){
         var query = _collectionRef.limit(to: 50)
-        query.order(by: kItemLastTouched)
+        query=query.order(by: kItemLastTouched)
         
         query = query.whereField(kItemAvailable, isEqualTo: true)
         if let byCategory=byCategory{
