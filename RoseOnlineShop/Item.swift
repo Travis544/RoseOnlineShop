@@ -25,12 +25,15 @@ class Item{
     init (doc : DocumentSnapshot ){
         let data=doc.data()
         self.id=doc.documentID
-        self.name=data?[kItemName] as! String ?? ""
-        self.imageUrl=data?[kItemImage] as! String ?? ""
-        self.category=data?[kItemCategory] as! String ?? ""
-        self.owner=data?[kItemOwner] as! String ?? ""
-        self.isAvailable=data?[kItemAvailable] as! Bool ?? false
+     self.name=data?[kItemName] as? String ?? ""
+        self.imageUrl=data?[kItemImage] as? String ?? ""
+        self.category=data?[kItemCategory] as? String ?? ""
+        self.owner=data?[kItemOwner] as? String ?? ""
+        self.isAvailable=data?[kItemAvailable] as? Bool ?? false
         self.description=data?[kItemDescription] as? String  ?? ""
+        print("SICK MAN")
+        print(doc.description)
+
         self.isTradable=data?[kItemTradable] as? Bool ?? true
         self.isBuyable=data?[kItemIsBuyable] as? Bool ?? true
     }
