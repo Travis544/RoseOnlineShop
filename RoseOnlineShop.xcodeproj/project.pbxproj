@@ -49,6 +49,7 @@
 		1FDC7173282F4CF0009A8C60 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC7172282F4CF0009A8C60 /* ItemDetailViewController.swift */; };
 		1FDC7175282F5A2D009A8C60 /* ItemDocumentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC7174282F5A2D009A8C60 /* ItemDocumentManager.swift */; };
 		1FDC7177282F6EAC009A8C60 /* OrderRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDC7176282F6EAC009A8C60 /* OrderRequestViewController.swift */; };
+		1FFDB4CA2836292D00A8BEC6 /* RequestDocumentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFDB4C92836292D00A8BEC6 /* RequestDocumentManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		1FDC7172282F4CF0009A8C60 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		1FDC7174282F5A2D009A8C60 /* ItemDocumentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDocumentManager.swift; sourceTree = "<group>"; };
 		1FDC7176282F6EAC009A8C60 /* OrderRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderRequestViewController.swift; sourceTree = "<group>"; };
+		1FFDB4C92836292D00A8BEC6 /* RequestDocumentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDocumentManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 				1F56170C2835BFCC0098E246 /* MyItemDetailTableViewController.swift */,
 				1F56170E2835CA4C0098E246 /* TradeBuyLabelController.swift */,
 				1F5D72BD2835F962005C6B85 /* RequestDetailViewController.swift */,
+				1FFDB4C92836292D00A8BEC6 /* RequestDocumentManager.swift */,
 			);
 			path = RoseOnlineShop;
 			sourceTree = "<group>";
@@ -387,6 +390,7 @@
 				1FB39C3B282F81AE0078BCE1 /* RequestsCollectionManager.swift in Sources */,
 				1FDC7175282F5A2D009A8C60 /* ItemDocumentManager.swift in Sources */,
 				1FDC7177282F6EAC009A8C60 /* OrderRequestViewController.swift in Sources */,
+				1FFDB4CA2836292D00A8BEC6 /* RequestDocumentManager.swift in Sources */,
 				1FDC716F282F49C9009A8C60 /* UserCollectionManager.swift in Sources */,
 				1F56170D2835BFCC0098E246 /* MyItemDetailTableViewController.swift in Sources */,
 				1F39420B2827610500C444C1 /* SceneDelegate.swift in Sources */,

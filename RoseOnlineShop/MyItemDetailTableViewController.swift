@@ -81,17 +81,13 @@ class MyItemDetailWithRequestTableViewController: UITableViewController,  UIText
 //                    self.itemDescriptionField.textColor=UIColor.white
                 }
                 
+                self.userCollectionManager.startListening {
+                    self.tableView.reloadData()
+                }
                
-                self.tableView.reloadData()
             }
             
-            self.userCollectionManager.startListening {
-                
-            }
-            
-            
-            
-            
+           
             
         }
         
@@ -229,14 +225,24 @@ class MyItemDetailWithRequestTableViewController: UITableViewController,  UIText
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier==kRequestDetailSegue{
+            let rdvc=segue.destination as! RequestDetailViewController
+            if let indexPath=tableView.indexPathForSelectedRow{
+                rdvc.item=self.itemManager.item
+                let id = self.requestManager.latestRequests[indexPath.row].id!
+                rdvc.requestID = id
+            }
+            
+        }
     }
-    */
+    
 
 }

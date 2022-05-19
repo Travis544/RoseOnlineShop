@@ -20,6 +20,9 @@ let kShowCategorySegue="categoriesSegue"
 let kItemDetailSegue="itemDetailSegue"
 let kMyItemsSegue="myItemsSegue"
 let kMyItemDetailSegue="myItemDetailSegue"
+let kRequestDetailSegue="requestDetailSegue"
+let kItemDetailFromRequestSegue="itemDetailFromRequestSegue"
+let kRequestDetailItemOfferedSegue="requestDetailItemOfferedSegue"
 //table view cell
 let kListingCell="listingCell"
 let kMyItemListingCell="myItemListingCell"
@@ -49,5 +52,8 @@ let kStatus="status"
 let kFromUser="fromUser"
 let kItemRequested = "itemRequested"
 let kProposeOfferSegue="proposeOfferSegue"
-let kItemDetailFromRequestSegue="itemDetailFromRequestSegue"
+
+
+
+
 

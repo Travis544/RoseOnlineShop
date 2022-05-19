@@ -50,7 +50,8 @@ class RequestCollectionMaanger{
     
     public func startListening(uid:String?, itemID:String?, changeListener: @escaping (() -> Void)){
         isListeningForItemRequest=false
-        var query = _collectionRef.order(by: kStatus).order(by: "created")
+//        order(by: kStatus)
+        var query = _collectionRef.order(by: "created")
         if let uid=uid{
             query=query.whereField(kFromUser, isEqualTo: uid)
         }

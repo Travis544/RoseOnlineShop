@@ -169,7 +169,13 @@ class RequestTableViewController: UITableViewController {
     }
     */
 
+    @IBAction func pressedRequestStack(_ sender: Any) {
+        self.performSegue(withIdentifier: kRequestDetailSegue, sender: self)
+    }
     
+    @IBAction func pressedRequestedItemImage(_ sender: Any) {
+        self.performSegue(withIdentifier: kRequestDetailSegue, sender: self)
+    }
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -181,6 +187,18 @@ class RequestTableViewController: UITableViewController {
             if let indexPath=tableView.indexPathForSelectedRow{
                 let id=requestManager.latestRequests[indexPath.row].itemRequested
                 idvc.itemId=id
+            }
+        }
+        
+        if segue.identifier==kRequestDetailSegue{
+            let rdvc = segue.destination as! RequestDetailViewController
+            if let indexPath=tableView.indexPathForSelectedRow{
+                let id=requestManager.latestRequests[indexPath.row].id
+                let itemRequested=requestManager.latestRequests[indexPath.row].itemRequested
+                rdvc.requestID=id
+                
+                rdvc.item  = itemManager.idToItem[itemRequested] ?? nil
+                
             }
         }
     }
