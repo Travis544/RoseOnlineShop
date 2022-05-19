@@ -110,6 +110,7 @@ class OrderRequestViewController: UIViewController {
             let request = Request(location: location, money:price, fromUser:AuthManager.shared.currentUser!.uid, itemProposed: itemAdded, itemRequested:itemRequested, message: message, status: "pending")
             
             requestManager.addRequest(request: request)
+            itemManager.updateAvailability(isAvailable: false)
             self.performSegue(withIdentifier: kProposeOfferSegue, sender: self)
         }
     }
