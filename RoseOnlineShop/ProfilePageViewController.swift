@@ -37,7 +37,9 @@ class ProfilePageViewController: UIViewController {
         UserDocumentManager.shared.updateName(name: nameTextField.text!)
     }
     
-
+    @IBAction func pressedBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)    }
+    
     func updateView(){
         print("show the name")
         nameTextField.text = UserDocumentManager.shared.displayName

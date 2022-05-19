@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 class Item{
     var category : String
-    var id : String
+    var id : String?
     var imageUrl : String
     var name : String
     var owner : String
@@ -18,9 +18,17 @@ class Item{
     var isTradable : Bool
     var isBuyable : Bool
     
-//    public init(){
-//
-//    }
+    init(category: String, imageUrl:String, name:String, owner: String, isAvailable:Bool, description:String, isTradable:Bool ,isBuyable:Bool){
+        self.category=category
+        //self.id=id
+        self.imageUrl=imageUrl
+        self.name=name
+        self.owner=owner
+        self.isAvailable=isAvailable
+        self.description=description
+        self.isTradable=isTradable
+        self.isBuyable=isBuyable
+    }
     
     init (doc : DocumentSnapshot ){
         let data=doc.data()

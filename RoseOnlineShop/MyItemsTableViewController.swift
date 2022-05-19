@@ -29,15 +29,18 @@ class MyItemsTableViewController: UITableViewController {
         itemManager=ItemCollectionManager()
         userManager=UsersCollectionManager()
         userManager.startListening {
-        
         }
-        //requestManager=RequestCollectionMaanger()
+        requestManager=RequestCollectionMaanger()
         
-        //requestManager.startListening(uid: AuthManager.shared.currentUser!.uid, itemID: String?) {
+        requestManager.startListening(uid: AuthManager.shared.currentUser!.uid, itemID: nil) {
             self.itemManager.startListening(byCategory:nil, byAuthor:AuthManager.shared.currentUser!.uid) {
                 self.tableView.reloadData()
             }
-       // }
+        }
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                            target: self,
+                                                            action: #selector(showAddQuoteDialog))
     }
 
     // MARK: - Table view data source
