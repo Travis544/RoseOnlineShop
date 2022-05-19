@@ -273,7 +273,11 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Profile Page" id="ENy-05-eSo" userLabel="Profile Page">
-                        <barButtonItem key="leftBarButtonItem" title="☰" id="Eqk-rO-IX4"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="Eqk-rO-IX4">
+                            <connections>
+                                <action selector="pressedBack:" destination="zMX-vc-IHz" id="VmV-2Q-4Qm"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>

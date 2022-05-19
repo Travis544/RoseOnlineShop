@@ -74,17 +74,20 @@ class ItemCollectionManager{
     
     public func addItem(item : Item) {
 //        print(album.albumMembers)
-////
-//        let data=[
-//            kAlbumName :  album.name,
-//            kAlbumOwner: album.owner,
-//            kAlbumMembers: album.albumMembers,
-//            kCoverImage : album.coverImage,
-//            kAlbumCreated: Timestamp.init()
-//        ] as [String : Any]
-//        cudStrategy.add(collectionRef: _collectionRef, data: data){ docRef in
-//            self.recentlyAddedAlbum = docRef.documentID
-//        }
+        var ref: DocumentReference? = nil
+        ref = _collectionRef.addDocument(data:[
+            kItemCategory:item.category,
+            kItemDescription:item.description,
+            kItemImage:item.imageUrl,
+            kItemAvailable:item.isAvailable,
+            kItemIsBuyable:item.isBuyable,
+            kItemTradable:item.isTradable,
+            kItemOwner:item.owner,
+            kItemName:item.name,
+            kItemLastTouched:Timestamp.init(),
+            
+        ])
+
     }
     
 //    public func deleteAlbum(docId : String){
