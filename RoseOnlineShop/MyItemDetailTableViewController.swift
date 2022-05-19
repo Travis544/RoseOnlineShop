@@ -1,42 +1,53 @@
 //
-//  ListingTableViewController.swift
+//  MyItemDetailTableViewController.swift
 //  RoseOnlineShop
 //
-//  Created by Yuanhang on 5/13/22.
+//  Created by Yuanhang on 5/18/22.
 //
 
 import UIKit
 
-
-class ListingTableViewCell : UITableViewCell{
-    @IBOutlet weak var listingNameLabel: UILabel!
-    @IBOutlet weak var soldByLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
-    @IBOutlet weak var tradeLabel: UILabel!
-    @IBOutlet weak var itemImageView: UIImageView!
+class ItemRequestTableViewCell : UITableViewCell{
+    @IBOutlet weak var requestFromUserLabel: UILabel!
+    @IBOutlet weak var tradeOfferedLabel: UILabel!
+    @IBOutlet weak var moneyOfferedLabel: UILabel!
 }
 
-class ListingTableViewController: UITableViewController {
-    var category : String!
-    var imageUtil : ImageUtils!
-    var itemManager : ItemCollectionManager!
-    var userManager : UsersCollectionManager!
+
+class MyItemDetailWithRequestTableViewController: UITableViewController {
+    @IBOutlet weak var itemImage : UIImageView!
+    @IBOutlet weak var itemNameLabel: UILabel!
+    @IBOutlet weak var tradeLabel: UILabel!
+    
+    @IBOutlet weak var itemDescription: UITextView!
+    @IBOutlet weak var buyLabel: UILabel!
+    var itemManager : ItemDocumentManager!
+    var itemID : String!
     var requestManager : RequestCollectionMaanger!
+    var userCollectionManager : UsersCollectionManager!
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageUtil=ImageUtils()
-        itemManager=ItemCollectionManager()
-        print(category)
-        userManager=UsersCollectionManager()
-        userManager.startListening {
-        }
-        requestManager=RequestCollectionMaanger()
-        
-        requestManager.startListening(uid: AuthManager.shared.currentUser!.uid, itemID: nil) {
-            self.itemManager.startListening(byCategory:self.category, byAuthor:nil ) {
+        requestManager = RequestCollectionMaanger()
+        itemManager = ItemDocumentManager()
+        userCollectionManager = UsersCollectionManager()
+        itemManager.startListening(for: itemID) {
+            self.requestManager.startListening(uid: nil, itemID: self.itemManager.item!.id) {
+                
+                if let item=self.itemManager.item{
+                    self.itemNameLabel.text=item.name
+                    TradeBuyLabelController.shared.controlLabels(item: item, tradeLabel: self.tradeLabel, buyLabel: self.buyLabel)
+                }
+                
+                
                 self.tableView.reloadData()
             }
+            
+            self.userCollectionManager.startListening {
+                
+            }
         }
+        
+    
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -48,56 +59,33 @@ class ListingTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+       return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return itemManager.latestItems.count
+//        need to change this
+        return requestManager.latestRequests.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: kListingCell, for: indexPath)
-        as! ListingTableViewCell
-        let item = itemManager.latestItems[indexPath.row]
-        if item.isTradable{
-            cell.tradeLabel.isHidden=false
-            cell.tradeLabel.text="Looking to trade"
-        }else{
-            cell.tradeLabel.isHidden=true
-        }
-        
-        if item.isBuyable{
-            cell.priceLabel.isHidden=false
-            cell.priceLabel.text = "Looking for buyers"
-        }else{
-            cell.priceLabel.isHidden=true
-        }
-        
-        
-        cell.listingNameLabel.text = item.name
-//        need to get user name here....
-        
-        var name = userManager.getFullName(uid: item.owner)
-        cell.soldByLabel.text = "Sold by:\(name)"
-        imageUtil.load(imageView: cell.itemImageView, from: item.imageUrl)
-        
-         let requests=requestManager.latestRequests
-        print(requests)
-         for req : Request in requests{
-             print(req.itemRequested)
-             if req.itemRequested==item.id{
-                print("REQUEST EXISTS")
-//                 cell.isUserInteractionEnabled=false
-                 cell.isOpaque=true
-//                 maybe make it tinted
-             }
-        }
-    
+        let cell = tableView.dequeueReusableCell(withIdentifier: kItemRequestTabelViewCell, for: indexPath)
+        as! ItemRequestTableViewCell
+
         // Configure the cell...
+        let request : Request = requestManager.latestRequests[indexPath.row]
+        let userID=request.fromUser
+        cell.requestFromUserLabel.text=userCollectionManager.getFullName(uid: userID)
+        if let item=self.itemManager.item{
+            TradeBuyLabelController.shared.controlLabels(item: item, tradeLabel: cell.tradeOfferedLabel, buyLabel: cell.moneyOfferedLabel)
+            
+            cell.moneyOfferedLabel.text = "Money offered:\(request.moneyOffered)"
+        }
+//        cell.tradeOfferedLabel.text = " "
         return cell
     }
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -134,24 +122,14 @@ class ListingTableViewController: UITableViewController {
     }
     */
 
-    
+    /*
     // MARK: - Navigation
+
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
-        
-        if segue.identifier==kItemDetailSegue{
-            let idvc=segue.destination as! ItemDetailViewController
-            
-            if let indexPath=tableView.indexPathForSelectedRow{
-                let id=itemManager.latestItems[indexPath.row].id
-                idvc.itemId=id
-            }
-        }
-    
-        
     }
-    
+    */
 
 }

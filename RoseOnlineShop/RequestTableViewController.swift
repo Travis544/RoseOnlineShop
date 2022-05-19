@@ -46,7 +46,7 @@ class RequestTableViewController: UITableViewController {
         super.viewDidAppear(animated)
         requestManager = RequestCollectionMaanger()
         itemManager=ItemCollectionManager()
-        requestManager.startListening(uid: AuthManager.shared.currentUser!.uid) {
+        requestManager.startListening(uid: AuthManager.shared.currentUser!.uid, itemID:nil) {
 
             self.itemManager.startListening(byCategory: nil, byAuthor: nil) {
                  self.tableView.reloadData()

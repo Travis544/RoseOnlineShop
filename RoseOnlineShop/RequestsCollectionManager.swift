@@ -24,9 +24,20 @@ class RequestCollectionMaanger{
     }
     
     
-    public func startListening(uid:String,changeListener: @escaping (() -> Void)){
-        var query = _collectionRef.order(by: "created").whereField(kFromUser, isEqualTo: uid)
 
+    
+    
+    
+    public func startListening(uid:String?, itemID:String?, changeListener: @escaping (() -> Void)){
+        
+        var query = _collectionRef.order(by: "created")
+        if let uid=uid{
+            query=query.whereField(kFromUser, isEqualTo: uid)
+        }
+
+        if let itemID = itemID {
+            query=query.whereField(kItemRequested, isEqualTo: itemID)
+        }
         listener.listenForCollection(query: query) { docs in
             self.latestRequests.removeAll()
             for doc in docs{

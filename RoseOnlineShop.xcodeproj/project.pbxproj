@@ -33,6 +33,8 @@
 		1F4668E8282E173700D0ABA1 /* ItemCollectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4668E7282E173700D0ABA1 /* ItemCollectionManager.swift */; };
 		1F4668EA282E184500D0ABA1 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4668E9282E184500D0ABA1 /* Item.swift */; };
 		1F4668ED282E234300D0ABA1 /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4668EC282E234300D0ABA1 /* ImageUtils.swift */; };
+		1F56170D2835BFCC0098E246 /* MyItemDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F56170C2835BFCC0098E246 /* MyItemDetailTableViewController.swift */; };
+		1F56170F2835CA4C0098E246 /* TradeBuyLabelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F56170E2835CA4C0098E246 /* TradeBuyLabelController.swift */; };
 		1F782823283235A3003E1F92 /* RequestTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F782822283235A3003E1F92 /* RequestTableViewController.swift */; };
 		1F78282628323AD0003E1F92 /* SideMenu in Frameworks */ = {isa = PBXBuildFile; productRef = 1F78282528323AD0003E1F92 /* SideMenu */; };
 		1F78282828323B15003E1F92 /* SideNavViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F78282728323B15003E1F92 /* SideNavViewController.swift */; };
@@ -92,6 +94,8 @@
 		1F4668E7282E173700D0ABA1 /* ItemCollectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionManager.swift; sourceTree = "<group>"; };
 		1F4668E9282E184500D0ABA1 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		1F4668EC282E234300D0ABA1 /* ImageUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUtils.swift; sourceTree = "<group>"; };
+		1F56170C2835BFCC0098E246 /* MyItemDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyItemDetailTableViewController.swift; sourceTree = "<group>"; };
+		1F56170E2835CA4C0098E246 /* TradeBuyLabelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeBuyLabelController.swift; sourceTree = "<group>"; };
 		1F782822283235A3003E1F92 /* RequestTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestTableViewController.swift; sourceTree = "<group>"; };
 		1F78282728323B15003E1F92 /* SideNavViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideNavViewController.swift; sourceTree = "<group>"; };
 		1F78282928323D28003E1F92 /* ProfilePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePageViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +194,8 @@
 				1F78282728323B15003E1F92 /* SideNavViewController.swift */,
 				1F78282928323D28003E1F92 /* ProfilePageViewController.swift */,
 				1F78282D2832403A003E1F92 /* MyItemsTableViewController.swift */,
+				1F56170C2835BFCC0098E246 /* MyItemDetailTableViewController.swift */,
+				1F56170E2835CA4C0098E246 /* TradeBuyLabelController.swift */,
 			);
 			path = RoseOnlineShop;
 			sourceTree = "<group>";
@@ -360,6 +366,7 @@
 				1F3942392827653600C444C1 /* LoginViewController.swift in Sources */,
 				1F39424B28276A3D00C444C1 /* constant.swift in Sources */,
 				1FDC7173282F4CF0009A8C60 /* ItemDetailViewController.swift in Sources */,
+				1F56170F2835CA4C0098E246 /* TradeBuyLabelController.swift in Sources */,
 				1FB39C3D282F81EC0078BCE1 /* Request.swift in Sources */,
 				1F3942532827991200C444C1 /* ListingViewController.swift in Sources */,
 				1F4668EA282E184500D0ABA1 /* Item.swift in Sources */,
@@ -377,6 +384,7 @@
 				1FDC7175282F5A2D009A8C60 /* ItemDocumentManager.swift in Sources */,
 				1FDC7177282F6EAC009A8C60 /* OrderRequestViewController.swift in Sources */,
 				1FDC716F282F49C9009A8C60 /* UserCollectionManager.swift in Sources */,
+				1F56170D2835BFCC0098E246 /* MyItemDetailTableViewController.swift in Sources */,
 				1F39420B2827610500C444C1 /* SceneDelegate.swift in Sources */,
 				1F39424F28276F0600C444C1 /* ListenerStrategy.swift in Sources */,
 				1F39423C2827657300C444C1 /* AuthManager.swift in Sources */,
