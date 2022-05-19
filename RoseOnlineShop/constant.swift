@@ -7,6 +7,7 @@
 
 import Foundation
 let kRoseFireRegistraryToken="73c52669-a480-477d-97c1-bf544b5896ff"
+let kDefaultProfile="https://firebasestorage.googleapis.com/v0/b/roseonlineshop-3175f.appspot.com/o/1a07666e2c03097dc5d422d5929d22f4.png?alt=media&token=15934bf9-506c-4101-9fc2-5b96f98db413"
 
 //users
 let kUsersCollectionPath="Users"
@@ -21,6 +22,8 @@ let kMyItemsSegue="myItemsSegue"
 //table view cell
 let kListingCell="listingCell"
 let kMyItemListingCell="myItemListingCell"
+let kItemRequestTabelViewCell="itemRequestTableViewCell"
+let kRequestTableViewCell="requestTableViewCell"
 
 //Item
 let kItemCollectionPath="Items"
