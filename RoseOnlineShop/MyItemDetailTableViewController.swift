@@ -77,7 +77,7 @@ class MyItemDetailWithRequestTableViewController: UITableViewController,  UIText
                     self.itemDescriptionField.text=item.description
                     self.itemDescriptionField.textColor=UIColor.systemBlue
                     print("DESCRIPTION: \(itemDescriptionField.text) c")
-                
+                    imageUtils.load(imageView: self.itemImage, from: item.imageUrl)
 //                    self.itemDescriptionField.textColor=UIColor.white
                 }
                 
@@ -163,7 +163,7 @@ class MyItemDetailWithRequestTableViewController: UITableViewController,  UIText
         let userID=request.fromUser
         cell.requestFromUserLabel.text=userCollectionManager.getFullName(uid: userID)
         if let item=self.itemManager.item{
-            imageUtils.load(imageView: self.itemImage, from: item.imageUrl)
+          
             TradeBuyLabelController.shared.controlLabels(item: item, tradeLabel: cell.tradeOfferedLabel, buyLabel: cell.moneyOfferedLabel)
             
             cell.moneyOfferedLabel.text = "Money offered:\(request.moneyOffered)"

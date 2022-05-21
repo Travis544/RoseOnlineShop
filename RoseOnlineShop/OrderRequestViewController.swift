@@ -62,7 +62,7 @@ class OrderRequestViewController: UIViewController {
         
         requestManager=RequestCollectionMaanger()
         itemCollectionManager = ItemCollectionManager()
-        itemCollectionManager.startListening(byCategory: nil, byAuthor: AuthManager.shared.currentUser!.uid) {
+        itemCollectionManager.startListening(available: true, byCategory: nil, byAuthor: AuthManager.shared.currentUser!.uid) {
             
         }
         

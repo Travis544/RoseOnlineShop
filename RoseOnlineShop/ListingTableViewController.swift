@@ -33,7 +33,7 @@ class ListingTableViewController: UITableViewController {
         requestManager=RequestCollectionMaanger()
         
         requestManager.startListening(uid: AuthManager.shared.currentUser!.uid, itemID: nil) {
-            self.itemManager.startListening(byCategory:self.category, byAuthor:nil ) {
+            self.itemManager.startListening(available: true, byCategory:self.category, byAuthor:nil ) {
                 self.tableView.reloadData()
             }
         }

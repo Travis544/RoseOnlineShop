@@ -11,7 +11,7 @@ class ItemCollectionManager{
     var _collectionRef: CollectionReference
     var listener : ListenerStrategy
     var latestItems: [Item]
-//    var cudStrategy : CUDStrategy
+  var cudStrategy : CUDStrategy
     var recentlyAddedItem : String?
     
     var idToItem : [String : Item]
@@ -21,7 +21,7 @@ class ItemCollectionManager{
         listener=ListenerStrategy()
         latestItems = [Item]()
         idToItem = [String : Item]()
-//        cudStrategy=CUDStrategy()
+        cudStrategy=CUDStrategy()
         recentlyAddedItem = nil
     }
     
@@ -32,11 +32,13 @@ class ItemCollectionManager{
     
     
 
-    public func startListening(byCategory: String?, byAuthor : String?, changeListener: @escaping (() -> Void)){
+    public func startListening(available : Bool? ,byCategory: String?, byAuthor : String?, changeListener: @escaping (() -> Void)){
         var query = _collectionRef.limit(to: 50)
         query=query.order(by: kItemLastTouched)
-        
-        query = query.whereField(kItemAvailable, isEqualTo: true)
+        if let available = available {
+            query = query.whereField(kItemAvailable, isEqualTo: available)
+        }
+      
         if let byCategory=byCategory{
             query = query.whereField(kItemCategory, isEqualTo:byCategory)
         }
@@ -58,7 +60,7 @@ class ItemCollectionManager{
             }
             print("UPATE!!!!")
             print(self.latestItems)
-
+            print(self.idToItem)
             changeListener()
         }
     }
@@ -85,19 +87,23 @@ class ItemCollectionManager{
     
     public func addItem(item : Item) {
 //        print(album.albumMembers)
-        var ref: DocumentReference? = nil
-        ref = _collectionRef.addDocument(data:[
-            kItemCategory:item.category,
-            kItemDescription:item.description,
-            kItemImage:item.imageUrl,
-            kItemAvailable:item.isAvailable,
-            kItemIsBuyable:item.isBuyable,
-            kItemTradable:item.isTradable,
-            kItemOwner:item.owner,
-            kItemName:item.name,
-            kItemLastTouched:Timestamp.init(),
-            
-        ])
+//        var ref: DocumentReference? = nil
+//        ref = _collectionRef.addDocument()
+   let data=[
+                kItemCategory:item.category,
+                kItemDescription:item.description,
+                kItemImage:item.imageUrl,
+                kItemAvailable:item.isAvailable,
+                kItemIsBuyable:item.isBuyable,
+                kItemTradable:item.isTradable,
+                kItemOwner:item.owner,
+                kItemName:item.name,
+                kItemLastTouched:Timestamp.init()
+   ] as [String : Any]
+     
+        cudStrategy.add(collectionRef: self._collectionRef, data: data) { docRef in
+            print("ADDED ITEM")
+        }
 
     }
     

@@ -69,6 +69,19 @@ class RequestTableViewController: UITableViewController {
 //        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
 //        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
+        
+        requestManager = RequestCollectionMaanger()
+        itemManager=ItemCollectionManager()
+        
+        
+        requestManager.startListening(uid: AuthManager.shared.currentUser!.uid, itemID:nil) {
+            
+            self.itemManager.startListening(available:nil, byCategory: nil, byAuthor: nil) {
+                 print("Listening to items")
+                self.tableView.reloadData()
+             }
+        }
+        
     }
     
     func acceptRequest(_ cell: UITableViewCell){
@@ -84,17 +97,12 @@ class RequestTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        requestManager = RequestCollectionMaanger()
-        itemManager=ItemCollectionManager()
-        requestManager.startListening(uid: AuthManager.shared.currentUser!.uid, itemID:nil) {
-
-            self.itemManager.startListening(byCategory: nil, byAuthor: nil) {
-                 self.tableView.reloadData()
-                 print("Listening to items")
-             }
-            
-            
-        }
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.requestManager.stopListening()
+        self.itemManager.stopListening()
     }
 
     // MARK: - Table view data source
@@ -117,13 +125,17 @@ class RequestTableViewController: UITableViewController {
         cell.delegate=self
         let request=requestManager.latestRequests[indexPath.row]
 //        cell.statusLabel.text=request.status
+        print("ITEM HERE")
+        print(itemManager.idToItem)
+        print(request.itemRequested)
         if let item = itemManager.idToItem[request.itemRequested]{
             cell.itemLabel.text = item.name
-            print("LOADING \(item.imageUrl)")
+           
+//            print("LOADING \(item.imageUrl)")
             imageUtils.load(imageView: cell.itemImageView, from: item.imageUrl)
             
             TradeBuyLabelController.shared.controlLabels(item: item, tradeLabel: cell.tradeOfferLabel, buyLabel: cell.priceLabel)
-            
+        
         }else{
             cell.itemLabel.text = "Item no longer exist"
         }

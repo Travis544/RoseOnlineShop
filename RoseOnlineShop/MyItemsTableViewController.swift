@@ -34,10 +34,14 @@ class MyItemsTableViewController: UITableViewController {
         requestManager=RequestCollectionMaanger()
         
         requestManager.startListening(uid: AuthManager.shared.currentUser!.uid, itemID: nil) {
-            self.itemManager.startListening(byCategory:nil, byAuthor:AuthManager.shared.currentUser!.uid) {
-                self.tableView.reloadData()
-            }
+          self.tableView.reloadData()
         }
+        
+        
+        self.itemManager.startListening(available:nil, byCategory:nil, byAuthor:AuthManager.shared.currentUser!.uid) {
+            self.tableView.reloadData()
+        }
+        
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
                                                             target: self,
@@ -71,15 +75,6 @@ class MyItemsTableViewController: UITableViewController {
                 textField.placeholder = "Is the Item for Trade?(yes/no)"
             }
         
-        
-            
-//        let isItemPrivateAction = UIAlertAction(title: isItemPrivate ? "Set item to public" : "Set item to private" ,style:UIAlertAction.Style.default){
-//            action in
-//
-//            self.isItemPrivate = !self.isItemPrivate
-//
-//        }
-//
             
             // Cancel button
             let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) { action in
@@ -137,6 +132,7 @@ class MyItemsTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        print(itemManager.latestItems.count)
         return itemManager.latestItems.count
     }
 
