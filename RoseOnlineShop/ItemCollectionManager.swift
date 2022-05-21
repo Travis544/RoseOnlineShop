@@ -31,6 +31,9 @@ class ItemCollectionManager{
     }
     
     
+    public func deleteItem(itemId:String){
+        cudStrategy.delete(self._collectionRef,itemId)
+    }
 
     public func startListening(available : Bool? ,byCategory: String?, byAuthor : String?, changeListener: @escaping (() -> Void)){
         var query = _collectionRef.limit(to: 50)

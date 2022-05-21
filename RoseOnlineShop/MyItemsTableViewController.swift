@@ -22,7 +22,6 @@ class MyItemsTableViewController: UITableViewController {
     var userManager : UsersCollectionManager!
     var requestManager : RequestCollectionMaanger!
     var isItemPrivate=false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         isItemPrivate=false
@@ -43,9 +42,12 @@ class MyItemsTableViewController: UITableViewController {
         }
         
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
-                                                            target: self,
-                                                            action: #selector(showAddQuoteDialog))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+//                                                            target: self,
+//                                                            action: #selector(showAddQuoteDialog))
+        
+        self.navigationItem.rightBarButtonItem=UIBarButtonItem(title:"☰", style: .plain, target: self, action: #selector(showMenu))
+        
     }
     
     
@@ -135,6 +137,36 @@ class MyItemsTableViewController: UITableViewController {
         print(itemManager.latestItems.count)
         return itemManager.latestItems.count
     }
+    
+    @objc func showMenu(){
+        //TODO: SHOW AN ACTION SHEET
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) { action in
+            print("Canceled")
+        }
+        
+        let showAddItemDialogAction = UIAlertAction(title: "Add An Item", style: UIAlertAction.Style.default) { action in
+            self.showAddQuoteDialog()
+        }
+        
+        let deleteItemDialogAction = UIAlertAction(title: "Delete An Item", style: UIAlertAction.Style.default) { action in
+            self.tableView.setEditing(!self.tableView.isEditing, animated: true )
+        }
+        
+//
+//        let signOutAction=UIAlertAction(title: "Sign out", style: UIAlertAction.Style.default) { action in
+//            AuthManager.shared.signOut()
+//        }
+//
+        
+        alertController.addAction(deleteItemDialogAction)
+        alertController.addAction(showAddItemDialogAction)
+        //alertController.addAction(signOutAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
+    }
+    
+    
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -166,25 +198,38 @@ class MyItemsTableViewController: UITableViewController {
     }
     
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        let item=self.itemManager.latestItems[indexPath.row]
+        return item.isAvailable
     }
-    */
+    
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            if let id=itemManager.latestItems[indexPath.row].id{
+               self.itemManager.deleteItem(itemId: id)
+                var requestManagerForItem : RequestCollectionMaanger! = RequestCollectionMaanger()
+                requestManagerForItem.startListening(uid: nil, itemID: id) {
+                    requestManagerForItem.deleteRequestsForItems(itemID: id)
+                    requestManagerForItem.stopListening()
+                }
+                
+                
+            }
+//            delete all request associated with item
+    
+            
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
         }    
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.

@@ -48,6 +48,16 @@ class RequestCollectionMaanger{
         return false
     }
     
+    
+    public func deleteRequestsForItems(itemID : String){
+        for request in latestRequests {
+            if request.itemRequested==itemID{
+                print("DELETING ITEM")
+                cudStrategy.delete(self._collectionRef, request.id!)
+            }
+        }
+    }
+    
     public func startListening(uid:String?, itemID:String?, changeListener: @escaping (() -> Void)){
         isListeningForItemRequest=false
 //        order(by: kStatus)
