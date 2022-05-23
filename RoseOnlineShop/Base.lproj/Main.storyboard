@@ -700,7 +700,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="5Kt-Gj-cc9">
-                                <rect key="frame" x="10" y="487.5" width="394" height="163"/>
+                                <rect key="frame" x="10" y="487.5" width="394" height="174.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sD4-g8-60a">
                                         <rect key="frame" x="0.0" y="0.0" width="394" height="24"/>
@@ -709,7 +709,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="n7T-TW-B9T">
-                                        <rect key="frame" x="0.0" y="27" width="394" height="136"/>
+                                        <rect key="frame" x="0.0" y="27" width="394" height="147.5"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -732,15 +732,10 @@
                                 </variation>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="51" translatesAutoresizingMaskIntoConstraints="NO" id="f5b-Gf-NWd">
-                                <rect key="frame" x="10" y="690.5" width="394" height="22"/>
+                                <rect key="frame" x="10" y="702" width="394" height="31"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Gk-d3-YAl">
-                                        <rect key="frame" x="0.0" y="0.0" width="171.5" height="22"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" title="Change item trade" image="pencil" catalog="system"/>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cct-Ob-woB">
-                                        <rect key="frame" x="222.5" y="0.0" width="171.5" height="22"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Update request"/>
                                         <connections>
@@ -765,12 +760,11 @@
                             <constraint firstItem="XpB-eL-GCi" firstAttribute="trailing" secondItem="5Kt-Gj-cc9" secondAttribute="trailing" constant="10" id="c66-gK-Mgf"/>
                             <constraint firstItem="lVh-Pv-EiU" firstAttribute="leading" secondItem="XpB-eL-GCi" secondAttribute="leading" id="gTe-D0-zvm"/>
                             <constraint firstItem="5Kt-Gj-cc9" firstAttribute="leading" secondItem="XpB-eL-GCi" secondAttribute="leading" constant="10" id="r1S-1t-kak"/>
-                            <constraint firstItem="XpB-eL-GCi" firstAttribute="bottom" secondItem="f5b-Gf-NWd" secondAttribute="bottom" constant="80.5" id="zbv-Ut-LDF"/>
+                            <constraint firstItem="XpB-eL-GCi" firstAttribute="bottom" secondItem="f5b-Gf-NWd" secondAttribute="bottom" constant="75" id="zbv-Ut-LDF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cyP-PB-hfG"/>
                     <connections>
-                        <outlet property="changeItemTradeButton" destination="2Gk-d3-YAl" id="KL3-ZD-OXY"/>
                         <outlet property="contactInfoField" destination="doq-xX-DSG" id="AAT-l6-YOS"/>
                         <outlet property="itemNameLabel" destination="yit-9G-7DB" id="K0F-0i-42w"/>
                         <outlet property="itemOfferStackView" destination="XVq-xb-F89" id="3Ke-2f-gGV"/>
@@ -977,7 +971,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="73" translatesAutoresizingMaskIntoConstraints="NO" id="vZW-F8-fyw">
-                                <rect key="frame" x="10" y="598.5" width="394" height="174.5"/>
+                                <rect key="frame" x="10" y="598.5" width="394" height="189.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ywf-UP-JDR">
                                         <rect key="frame" x="0.0" y="0.0" width="160.5" height="31"/>
@@ -1341,9 +1335,9 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="bRq-dd-jwG"/>
-        <segue reference="IoN-7B-0AG"/>
+        <segue reference="nDS-sQ-21F"/>
         <segue reference="xm6-ce-0gL"/>
-        <segue reference="nlL-Uy-eYY"/>
+        <segue reference="sdo-4Q-lFq"/>
         <segue reference="3O5-4C-Flb"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -1351,7 +1345,6 @@
         <image name="cart.fill" catalog="system" width="128" height="102"/>
         <image name="list.bullet.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="paperplane.fill" catalog="system" width="128" height="118"/>
-        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
         <systemColor name="labelColor">

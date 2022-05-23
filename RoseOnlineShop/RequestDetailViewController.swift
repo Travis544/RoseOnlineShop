@@ -15,7 +15,7 @@ class RequestDetailViewController: UIViewController {
     @IBOutlet weak var messageField: UITextView!
     
     @IBOutlet weak var updateRequestButton: UIButton!
-    @IBOutlet weak var changeItemTradeButton: UIButton!
+   
     
     
     @IBOutlet weak var locationField: UITextField!
@@ -36,25 +36,28 @@ class RequestDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print(item)
         // Do any additional setup after loading the view.
         requestManager = RequestDocumentManager()
         itemToTradeManager = ItemDocumentManager()
         
         requestManager.startListening(for: requestID) {
             if let request = self.requestManager.request{
-                if request.fromUser != AuthManager.shared.currentUser!.uid{
+                if request.fromUser != AuthManager.shared.currentUser!.uid || request.status != "pending" {
                     self.locationField.isEnabled=false
                     self.offerPriceField.isEnabled=false
                     self.messageField.isEditable=false
                     self.updateRequestButton.isHidden=true
-                    self.changeItemTradeButton.isHidden=true
+                  
                     self.contactInfoField.isEnabled=false
                 }
+                
+               
                     
-                if request.itemProposed.count != 0{                self.itemToTradeManager.startListening(for: request.itemProposed.first!.key) {
+                if request.itemProposed.count != 0{
+                    self.itemToTradeManager.startListening(for: request.itemProposed.first!.key) {
                     
-                    self.updateItemOfferedImage()
+                        self.updateItemOfferedImage()
                     
                     }
                 }else if request.itemProposed.count==0{
@@ -78,6 +81,8 @@ class RequestDetailViewController: UIViewController {
             if !item.isBuyable{
                 offerStack.isHidden=false
             }
+            
+        
         }
 //            if !item.isTradable{
 //                itemOfferStackView.isHidden=true
@@ -100,6 +105,8 @@ class RequestDetailViewController: UIViewController {
     
     
     func updateItemOfferedImage(){
+        print("UPDATING!!!")
+        print(itemToTradeManager.item)
         if let item=itemToTradeManager.item{
             imageUtils.load(imageView: itemOfferedImage, from: item.imageUrl)
             itemNameLabel.text=item.name

@@ -228,6 +228,9 @@ class RequestTableViewController: UITableViewController {
                 let itemRequested=requestManager.latestRequests[indexPath.row].itemRequested
                 rdvc.requestID=id
                 
+                print(itemRequested)
+                print(itemManager.idToItem)
+                print(itemManager.idToItem[itemRequested] )
                 rdvc.item  = itemManager.idToItem[itemRequested] ?? nil
                 
             }
